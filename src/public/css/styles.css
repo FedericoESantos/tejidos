@@ -1,0 +1,147 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Titulos';
+    src: url('/font/Rustic.ttf');
+}
+
+body{
+    background-image: url("../img/fondo.png");
+}
+h1{
+    font-family: "Titulos";
+    font-size: 50px;
+    color: rgb(255, 183, 0);
+    text-shadow: 2px 2px 4px black;
+}
+.header{
+    display: flex;
+    max-width: 100%;
+    height: 120px;
+    background-color: rgba(35, 35, 93, 0.74);
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+.header img{
+    width: 95px;
+    margin-left: 15px;
+}
+
+.menu{
+    display: flex;
+    max-width: 100%;
+    height: 35px;
+    background-color: rgb(21, 21, 61);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 15px;
+}
+.menu a{
+    text-decoration: none;
+    color: aliceblue;
+    text-shadow: 2px 2px 4px black;
+    font-size: 18px;
+}
+.menu a:hover{
+    color: darkorange;
+}
+.main{
+    display: flex;
+    max-width: 100%;
+    height: 350px;
+    background-color: rgba(214, 214, 234, 0.78);
+}
+
+.footer{
+    display: flex;
+    max-width: 100%;
+    height: 150px;
+    background-color: rgb(21, 21, 61);
+}
+
+@media (max-width: 690px){
+    .header{
+        display: flex;
+        flex-direction: column;
+
+       height: 250px;
+    }
+}
+
+/* Demas Paginas a partir de aca */
+
+.main-pag{
+    display: flex;
+    max-width: 100%;
+    padding: 10px;
+    background-color: rgba(214, 214, 234, 0.78);
+    gap: 15px;
+}
+.menu-pag{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 217, 0, 0.784);
+    padding: 15px;
+    min-width: 80px;
+}
+.menu-pag a{
+    text-decoration: none;
+    color: rgb(255, 242, 240);
+    text-shadow: 2px 2px 4px black;
+    font-size: 18px;
+}
+.menu-pag a:hover{
+    color: rgb(33, 66, 129);
+}
+.card ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 15px;
+    justify-content: center;
+}
+.card-prod{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    text-align: center;
+    border: solid thin rgb(97, 105, 110);
+    border-style: groove;
+}
+
+/* CHAT */
+.chat{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+}
+.bienve-chat{
+    text-align: center;
+}
+#mensajes{
+    flex-grow: 1;
+    width: 100%; 
+    height: 350px;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 5px #333 inset;
+    padding: 5px;
+    background-color: rgba(48, 118, 188, 0.746);
+}
+
+.mensaje{
+    width: auto;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgba(241, 154, 248, 0.862);
+    display: inline-block;
+    margin-top: 5px;
+}

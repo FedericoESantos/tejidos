@@ -1,0 +1,67 @@
+<div class="header">
+    <h1>Stock de Productos</h1>
+
+    <img src="./img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+
+</div>
+<hr>
+
+<div class="main-pag">
+
+        <div class="menu-pag">
+            <a href="/">Inicio</a>
+        </div>
+
+        <div class="card">
+
+            <div class="carga">
+
+            <form action="/api/products" method="post" enctype="multipart/form-data">
+                <input type="file" name="prod">
+                <input type="text" name="name" placeholder="nombre del producto">
+                <input type="text" name="description" placeholder="descripcion del producto">
+                <input type="text" name="price" placeholder="precio del producto">
+                <input type="text" name="stock" placeholder="stock del producto">
+                <li><img src="{{img}}" alt="{{name}}"></li> 
+                <br>
+                <input type="submit" value="Grabar">            
+            </form>
+            <br>
+        </div>
+
+            <ul id="productos">
+
+                {{#each productos}}
+                <div class="card-prod">
+                    <li><strong>ID: </strong>{{id}}</li> <br>
+                    <li><strong>Nombre: </strong>{{name}}</li> <br>
+                    <li><strong>Descripcion: </strong>{{description}}</li> <br>
+                    <li><strong>Precio: </strong>{{price}}</li> <br>
+                    <li><strong>Stock: </strong>{{stock}}</li> <br> <br>
+                </div>
+
+                {{/each}}
+
+            </ul>
+
+        </div>
+
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/stock.js"></script>
