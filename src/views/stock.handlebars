@@ -13,43 +13,50 @@
 
 <div class="main-pag">
 
-        <div class="menu-pag">
-            <a href="/">Inicio</a>
-        </div>
+    <div class="menu-pag">
+        <a href="/">Inicio</a>
+        <a href="/productos">Productos</a>
+        <a href="/carrito/{{carrito._id}}">Carrito</a>
+        <a href="/chat">Chat</a>
+    </div>
 
-        <div class="card">
+    <div class="card">
 
-            <div class="carga">
+        <div class="carga">
 
             <form action="/api/products" method="post" enctype="multipart/form-data">
                 <input type="file" name="prod">
                 <input type="text" name="name" placeholder="nombre del producto">
                 <input type="text" name="description" placeholder="descripcion del producto">
+                <input type="text" name="category" placeholder="categoria del producto">
                 <input type="text" name="price" placeholder="precio del producto">
                 <input type="text" name="stock" placeholder="stock del producto">
-                <li><img src="{{img}}" alt="{{name}}"></li> 
+
+                <img src="{{img}}" alt="{{name}}">
                 <br>
-                <input type="submit" value="Grabar">            
+                <input type="submit" value="Grabar">
             </form>
             <br>
         </div>
 
-            <ul id="productos">
+        <ul id="productos">
 
-                {{#each productos}}
-                <div class="card-prod">
-                    <li><strong>ID: </strong>{{id}}</li> <br>
-                    <li><strong>Nombre: </strong>{{name}}</li> <br>
-                    <li><strong>Descripcion: </strong>{{description}}</li> <br>
-                    <li><strong>Precio: </strong>{{price}}</li> <br>
-                    <li><strong>Stock: </strong>{{stock}}</li> <br> <br>
-                </div>
+            {{#each productos}}
+            <div class="card-prod">
+                <p><img src="{{image}}" alt="{{name}}"></p>
+                <li><strong>ID: </strong>{{_id}}</li>
+                <li><strong>Nombre: </strong>{{name}}</li>
+                <li><strong>Descripcion: </strong>{{description}}</li>
+                <li><strong>Categoria: </strong>{{category}}</li>
+                <li><strong>Precio: </strong>{{price}}</li>
+                <li><strong>Stock: </strong>{{stock}}</li>
+            </div>
 
-                {{/each}}
+            {{/each}}
 
-            </ul>
+        </ul>
 
-        </div>
+    </div>
 
 </div>
 

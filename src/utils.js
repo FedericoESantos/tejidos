@@ -1,4 +1,5 @@
 import multer from "multer";
+import crypto from "crypto";
 
 const storage = multer.diskStorage({
     destination: function (req,file,cb){
@@ -16,3 +17,6 @@ const storage = multer.diskStorage({
 })
 
 export const upload = multer({storage: storage});
+
+const secret = "fede123";
+export const generaHash = password => crypto.createHmac("sha256", secret).update(password).digest("hex");

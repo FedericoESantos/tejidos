@@ -1,0 +1,51 @@
+<div class="header">
+<h1>My Carrito</h1>
+
+<img src="/img/logo-punto-feliz.png" alt="logo">
+
+<div class="buscador">
+    <label for="buscador"><strong>Buscador </strong></label>
+    <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+</div>
+</div>
+<hr>
+
+<div class="main-pag">
+
+    <div class="menu-pag">
+        <a href="/">Inicio</a>
+        <a href="/stock">Stock</a>
+        <a href="/productos">Productos</a>
+        <a href="/chat">Chat</a>
+    </div>
+
+    <div class="card">
+
+        <ul id="carrito">
+
+            {{#each carrito.productos}}
+            <div class="card-prod">
+                <li>
+                    <strong>Descripcion: </strong>{{producto.description}} <br>
+                    <strong>Precio: </strong>{{producto.price}} <br>
+                    <strong>Cantidad: </strong>{{cantidad}} <br>
+                </li>
+            </div>
+            {{/each}}
+
+        </ul>
+        <a href="/productos">Seguir Comprando</a>
+    </div>
+</div>
+
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>

@@ -109,11 +109,34 @@ h1{
 .card-prod{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    width: 205px;
     padding: 10px;
-    text-align: center;
     border: solid thin rgb(97, 105, 110);
     border-style: groove;
+    border-radius: 5px;
+    text-align: center;
+    gap: 10px;
+    background-color: rgba(37, 11, 108, 0.607);
+}
+.card-prod img{
+    height: 250px;
+    align-items: center;
+}
+.card-prod li {
+    list-style: none;
+    margin-bottom: 10px; 
+}
+.card-prod button{
+    padding: 8px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+.card-prod button:hover{
+    background-color: goldenrod;
+    color: rgb(32, 9, 65);
 }
 
 /* CHAT */

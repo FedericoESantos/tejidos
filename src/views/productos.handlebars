@@ -14,24 +14,34 @@
 
     <div class="menu-pag">
         <a href="/">Inicio</a>
+        <a href="/stock">Stock</a>
+        <a href="/carrito/{{carrito._id}}">Carrito</a>
         <a href="/chat">Chat</a>
     </div>
 
     <div class="card">
+        <input type="text" value="{{carrito._id}}" hidden id="carrito">
         <ul id="productos">
 
             {{#each productos}}
             <div class="card-prod">
-                <li><strong>ID: </strong>{{id}}</li> <br>
-                <li><strong>Nombre: </strong>{{name}}</li> <br>
-                <li><strong>Descripcion: </strong>{{description}}</li> <br>
-                <li><strong>Precio: </strong>{{price}}</li> <br>
-                <li><strong>Stock: </strong>{{stock}}</li> <br> <br>
+                <p><img src="{{image}}" alt="{{name}}"></p>
+                <li><strong>Nombre: </strong>{{name}}</li>
+                <li><strong>Descripcion: </strong>{{description}}</li>
+                <li><strong>Categoria: </strong>{{category}}</li> 
+                <li><strong>Precio: </strong>{{price}}</li> 
+                <li><strong>Stock: </strong>{{stock}}</li> 
+                
+                <button onclick="comprar('{{_id}}')">
+                    Agregar al Carrito
+                </button>    
             </div>
 
             {{/each}}
 
         </ul>
+
+        <a href="/carrito/{{carrito._id}}">Ver Carrito</a>
     </div>
 </div>
 
@@ -48,4 +58,4 @@
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/stock.js"></script>
+<script src="/js/productos.js"></script>

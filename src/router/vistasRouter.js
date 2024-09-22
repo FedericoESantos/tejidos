@@ -1,44 +1,69 @@
 import { Router } from 'express';
-import { productManager as Prod } from '../dao/productManager.js';
+import { productManagerMongo as Prod } from '../dao/productManagerMongo.js';
+import { CarritoManagerMongo as carrito} from '../dao/carritoManagerMongo.js';
 
 let productManager = new Prod();
+let cartManager = new carrito();
 
 export const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
+    let carrito = await cartManager.getBy();
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("home", { title: "Punto Feliz" });
+    return res.status(200).render("home", { carrito, title: "Punto Feliz" });
 });
 
-router.get('/stock', (req, res) => {
+router.get('/stock', async(req, res) => {
+    let carrito = await cartManager.getBy();
     let productos; 
     try {
-        productos = productManager.getAll(); 
+        productos = await productManager.getAll(); 
     } catch (error) {
         res.setHeader('Content-Type','application/json');
         return res.status(400).json({error:`${error.message}`});
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("stock", { productos, title: "Punto Feliz" });
+    return res.status(200).render("stock", { carrito, productos, title: "Punto Feliz" });
 });
 
-router.get('/productos', (req, res) => {
+router.get('/productos', async(req, res) => {
+    let carrito = await cartManager.getBy();
+    if(!carrito){
+        carrito = await cartManager.create();
+    }
+
     let productos; 
-    try {
-        productos = productManager.getAll(); 
+        try {
+        productos = await productManager.getAll(); 
     } catch (error) {
         res.setHeader('Content-Type','application/json');
         return res.status(400).json({error:`${error.message}`});
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("productos", { productos, title: "Punto Feliz" });
+    return res.status(200).render("productos", { productos, carrito, title: "Punto Feliz" });
 });
 
-router.get('/chat', (req, res) => {
+router.get('/carrito/:cid', async(req, res) => {
+    let { cid } = req.params;
+
+    let carrito; 
+        try {
+        carrito = await cartManager.getByPopulate({_id:cid}); 
+    } catch (error) {
+        res.setHeader('Content-Type','application/json');
+        return res.status(400).json({error:`${error.message}`});
+    }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("chat", { title: "Punto Feliz" });
+    return res.status(200).render("carrito", { carrito, title: "Punto Feliz" });
+});
+
+router.get('/chat', async(req, res) => {
+    let carrito = await cartManager.getBy();
+
+    res.setHeader('Content-Type', 'text/html');
+    return res.status(200).render("chat", { carrito, title: "Punto Feliz" });
 });
