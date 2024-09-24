@@ -2,10 +2,12 @@ import express from 'express';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
 import { router as carritoRouter } from './router/cartRouter.js';
+import { router as usuariosRouter } from './router/usuariosRouter.js';
 
 const port = 3000;
 const app = express();
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(express.static('./src/public'));
+app.use(cookieParser());
 
 app.use("/api/carts", carritoRouter);
 app.use("/api/products",(req,res,next)=>{
@@ -29,6 +32,7 @@ app.use("/api/products",(req,res,next)=>{
     
     next();
 } ,productRouter);
+app.use("/api/usuarios", usuariosRouter);
 app.use("/", vistasRouter);
 
 const serverHTP = app.listen(port, ()=>{
@@ -46,7 +50,7 @@ const connDB = async()=>{
             }
         )
         console.log('DB Online ... conectado a base de datos :D');
-    } catch (error) {
+         } catch (error) {
         console.log('Error al conectar a base de datos', error.menssage);
     }
 }

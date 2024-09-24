@@ -6,6 +6,10 @@ export class usuarioManagerMongo{
         return await usuariosModelo.find();
     }
 
+    async getAllPaginate(page=1){
+        return await usuariosModelo.paginate({},{limit:10, page, lean:true});
+    }
+
     async getBy(filtro){
         return await usuariosModelo.findOne(filtro);
     }

@@ -88,16 +88,21 @@ h1{
     flex-direction: column;
     background-color: rgba(255, 217, 0, 0.784);
     padding: 15px;
-    min-width: 80px;
+    min-width: auto;
+    box-shadow: 2px 2px 4px black;
 }
 .menu-pag a{
     text-decoration: none;
     color: rgb(255, 242, 240);
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 5px black;
     font-size: 18px;
 }
 .menu-pag a:hover{
     color: rgb(33, 66, 129);
+}
+.card{
+    text-align: center;
+    width: 100%;
 }
 .card ul{
     display: flex;
@@ -167,4 +172,27 @@ h1{
     background-color: rgba(241, 154, 248, 0.862);
     display: inline-block;
     margin-top: 5px;
+}
+
+#usuarios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paginas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.paginas a{
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(16, 16, 98);
+}
+.paginas a:hover{
+    color: rgb(112, 89, 31);
 }

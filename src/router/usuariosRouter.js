@@ -7,7 +7,7 @@ export const router = Router();
 
 const usuariosManager = new UsuariosManager();
 
-router.get('/'), async (req, res) => {
+router.get('/', async (req, res) => {
     let usuarios;
     try {
         usuarios = await usuariosManager.getAll();
@@ -24,9 +24,9 @@ router.get('/'), async (req, res) => {
             }
         )
     }
-};
+});
 
-router.get('/:id'), async (req, res) => {
+router.get('/:id', async (req, res) => {
     let { id } = req.params;
     if(!isValidObjectId){
         res.setHeader(`Content-Type`,`application/json`);
@@ -47,18 +47,18 @@ router.get('/:id'), async (req, res) => {
             }
         )
     }
-};
+});
 
-router.post('/'), async (req, res) => {
-    let { nombre, email, password } = req.body;
-    if (!nombre || !email || !password) {
+router.post('/', async (req, res) => {
+    let { name, last_name, email, password } = req.body;
+    if (!name || !last_name || !email || !password) {
         res.setHeader(`Content-Type`, `application/json`);
         return res.status(400).json({ error: "Error: Faltan datos. Complete con nombre, email y password." });
     }
 
     let existe;
     try {
-        existe = await usuariosManager.getByName({ name });
+        existe = await usuariosManager.getByName(name);
     } catch (error) {
         console.log(error);
         res.setHeader('Content-Type', 'application/json');
@@ -72,7 +72,7 @@ router.post('/'), async (req, res) => {
 
     let nuevoUsuario;
     try {
-        nuevoUsuario = usuariosManager.create({ nombre, email, password: generaHash(password) });
+        nuevoUsuario = usuariosManager.create({ name, last_name, email, password: generaHash(password) });
         res.setHeader('Content-Type', 'application/json');
         return res.status(200).json({ nuevoUsuario });
     } catch (error) {
@@ -84,9 +84,9 @@ router.post('/'), async (req, res) => {
             }
         )
     }
-};
+});
 
-router.put('/:id'), async (req, res) => {
+router.put('/:id', async (req, res) => {
     let { id } = req.params;
     if (!isValidObjectId) {
         res.setHeader(`Content-Type`, `application/json`);
@@ -139,9 +139,9 @@ router.put('/:id'), async (req, res) => {
             }
         )
     }
-};
+});
 
-router.delete('/:id'), async (req, res) => {
+router.delete('/:id', async (req, res) => {
     let { id } = req.params;
     if (!isValidObjectId) {
         res.setHeader(`Content-Type`, `application/json`);
@@ -173,5 +173,5 @@ router.delete('/:id'), async (req, res) => {
 
 
 
-}
+});
 
