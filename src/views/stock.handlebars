@@ -9,36 +9,32 @@
     </div>
 
 </div>
+
 <hr>
 
 <div class="main-pag">
 
-    <div class="menu-pag">
-        <a href="/">Inicio</a>
-        <a href="/productos">Productos</a>
-        <a href="/carrito/{{carrito._id}}">Carrito</a>
-        <a href="/chat">Chat</a>
-        <a href="/usuarios">Usuarios</a>
+    <div class="menu2">
+        {{>menu}}
     </div>
 
     <div class="card">
-
-        <div class="carga">
-
+        <div class="stock">
             <form action="/api/products" method="post" enctype="multipart/form-data">
-                <input type="file" name="prod">
-                <input type="text" name="name" placeholder="nombre del producto">
-                <input type="text" name="description" placeholder="descripcion del producto">
-                <input type="text" name="category" placeholder="categoria del producto">
-                <input type="text" name="price" placeholder="precio del producto">
-                <input type="text" name="stock" placeholder="stock del producto">
+            <input type="file" name="prod">
+            <input type="text" name="name" placeholder="nombre del producto">
+            <input type="text" name="description" placeholder="descripcion del producto">
+            <input type="text" name="category" placeholder="categoria del producto">
+            <input type="text" name="price" placeholder="precio del producto">
+            <input type="text" name="stock" placeholder="stock del producto">
 
-                <img src="{{img}}" alt="{{name}}">
-                <br>
-                <input type="submit" value="Grabar">
-            </form>
+            <img src="{{img}}" alt="{{name}}">
             <br>
+            <input type="submit" value="Grabar" class="grabar">
+            </form>
         </div>
+
+        <br>
 
         <ul id="productos">
 

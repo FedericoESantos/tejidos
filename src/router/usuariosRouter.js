@@ -72,9 +72,11 @@ router.post('/', async (req, res) => {
 
     let nuevoUsuario;
     try {
-        nuevoUsuario = usuariosManager.create({ name, last_name, email, password: generaHash(password) });
+
+        nuevoUsuario = await usuariosManager.create({ name, last_name, email, password: generaHash(password) });
+        console.log('Usuario creado:', nuevoUsuario);
         res.setHeader('Content-Type', 'application/json');
-        return res.status(200).json({ nuevoUsuario });
+        return res.status(200).json({ payload: nuevoUsuario });
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(500).json(

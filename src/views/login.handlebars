@@ -1,0 +1,63 @@
+<div class="header">
+    <h1>Logueate!!!</h1>
+
+    <img src="/img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+</div>
+<hr>
+
+<div class="main-pag">
+
+    <div class="menu2">
+        {{>menu}}
+    </div>
+
+    <div class="card">
+        <div class="info-registro">
+            <span>
+                Has llegado a la parte mas importante, loguearte. Si ya te has registrado solo te queda un paso. <br>
+                Accede con tu correo electrónico y contraseña para disfrutar de lo mucho que te podamos brindar. <br>
+                Y demas esta decirte que nos enorgullece contar con tu presencia, Bienvenido/a!!!             
+            </span>
+        </div>
+
+        <h2>Zona de Login</h2>
+        <br>
+
+        <form action="/api/session/login" method="post">
+            {{#if error}}
+            <div style="font-weight:bolder; font-size:18px; color:red">{{error}}</div> <br>
+            {{/if}}
+
+            {{#if ok}}
+            <div style="font-weight:bolder; font-size:18px; color:rgb(55, 131, 14)">{{ok}}</div> <br>
+            {{/if}}
+
+
+            <strong>Email: </strong><input type="email" name="email" placeholder="Escriba su email">
+            <strong>Contraseña: </strong><input type="password" name="password" placeholder="Escriba su contraseña">
+            <input type="text" name="web" value="web" hidden>
+            <br><br>
+            <input type="submit" value="Logueate" class="login">
+        </form>
+
+        <div class="logo">
+            <img src="/img/logo-punto-feliz.png" alt="logo">
+        </div>
+    </div>
+
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>

@@ -12,14 +12,10 @@
 
 <div class="main-pag">
 
-    <div class="menu-pag">
-        <a href="/">Inicio</a>
-        <a href="/stock">Stock</a>
-        <a href="/productos">Productos</a>
-        <a href="/carrito">Carrito</a>
-        <a href="/chat">Chat</a>
+    <div class="menu2">
+        {{>menu}}
     </div>
-
+    
     <div class="card">
         <h2>Usuarios</h2>
         <br>
@@ -37,15 +33,15 @@
         </ul>
         <br>
         <div class="paginas">
-            <a href="/usuarios?pagina=1">Pagina Principal</a> 
+            <a href="/usuarios?pagina=1">Pagina Principal</a>
             <p><strong>|</strong></p>
             {{#if hasPrevPage}}
-            <a href="/usuarios?pagina={{prevPage}}">Anterior</a> 
+            <a href="/usuarios?pagina={{prevPage}}">Anterior</a>
             {{/if}}
             <p><strong>|</strong></p>
             {{#if hasNextPage}}
             <a href="/usuarios?pagina={{nextPage}}">Siguiente</a>
-            {{/if}}    
+            {{/if}}
             <p><strong>|</strong></p>
             <a href="usuarios?pagina={{totalPages}}">Ultima Página</a>
         </div>

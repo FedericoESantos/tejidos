@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
@@ -9,16 +9,35 @@
     src: url('/font/Rustic.ttf');
 }
 
-body{
+body {
     background-image: url("../img/fondo.png");
+    min-height: 100vh;
 }
-h1{
+
+h1 {
     font-family: "Titulos";
     font-size: 50px;
     color: rgb(255, 183, 0);
     text-shadow: 2px 2px 4px black;
 }
-.header{
+
+.titulo {
+    font-family: "Titulos";
+    font-size: 38px;
+    color: rgb(255, 0, 0);
+    text-shadow: 2px 2px 4px black;
+}
+
+li {
+    list-style: none;
+}
+
+.link {
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.header {
     display: flex;
     max-width: 100%;
     height: 120px;
@@ -27,91 +46,162 @@ h1{
     padding: 15px;
     align-items: center;
 }
-.header img{
+
+.header img {
     width: 95px;
     margin-left: 15px;
 }
 
-.menu{
+.titulo {
     display: flex;
-    max-width: 100%;
-    height: 35px;
-    background-color: rgb(21, 21, 61);
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+    flex-direction: column;
     gap: 15px;
+    text-align: center;
 }
-.menu a{
+
+.titulo span {
+    background-color: rgba(240, 248, 255, 0.476);
+    border-radius: 35%;
+}
+
+/* MENU HORIZONTAL PARA HOME */
+.menuH {
+    width: 100%;
+    height: auto;
+    background-color: rgb(21, 21, 61);
+    text-align: center;
+}
+
+.menuH ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 5px;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuH ul li a {
     text-decoration: none;
     color: aliceblue;
     text-shadow: 2px 2px 4px black;
     font-size: 18px;
 }
-.menu a:hover{
+
+.menuH ul li a:hover {
     color: darkorange;
 }
-.main{
+
+/* MENU color PARA DEMAS PAGINAS */
+.menu2 {
+    width: 100%;
+    height: auto;
+    background-color: rgb(21, 21, 61);
+    text-align: center;
+}
+
+.menu2 ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 5px;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu2 ul li a {
+    text-decoration: none;
+    color: aliceblue;
+    text-shadow: 2px 2px 4px black;
+    font-size: 18px;
+}
+
+.menu2 ul li a:hover {
+    color: darkorange;
+}
+
+/* fin */
+.main {
     display: flex;
     max-width: 100%;
     height: 350px;
     background-color: rgba(214, 214, 234, 0.78);
 }
 
-.footer{
+.footer {
     display: flex;
-    max-width: 100%;
-    height: 150px;
     background-color: rgb(21, 21, 61);
+    height: 150px;
+    width: 100%;
+    text-align: center;
 }
 
-@media (max-width: 690px){
-    .header{
+@media (max-width: 690px) {
+    .header {
         display: flex;
         flex-direction: column;
+        height: 320px;
+    }
 
-       height: 250px;
+    .menu {
+        padding: 10px;
+        height: max-content;
     }
 }
 
 /* Demas Paginas a partir de aca */
 
-.main-pag{
-    display: flex;
-    max-width: 100%;
-    padding: 10px;
-    background-color: rgba(214, 214, 234, 0.78);
-    gap: 15px;
-}
-.menu-pag{
+.main-pag {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 217, 0, 0.784);
-    padding: 15px;
-    min-width: auto;
-    box-shadow: 2px 2px 4px black;
+    width: 100%;
+    height: max-content;
+    flex-grow: 1;
 }
-.menu-pag a{
-    text-decoration: none;
-    color: rgb(255, 242, 240);
-    text-shadow: 2px 2px 5px black;
-    font-size: 18px;
+
+.main-pag .menu2 {
+    background-color: rgba(70, 13, 63, 0.796);
 }
-.menu-pag a:hover{
-    color: rgb(33, 66, 129);
-}
-.card{
+
+.card {
+    border-style: groove;
     text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(240, 255, 255, 0.79);
 }
-.card ul{
+
+.card a {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(30, 24, 128);
+    background-color: rgba(137, 43, 226, 0.424);
+}
+
+.card a:hover {
+    color: rgb(255, 4, 0);
+    background-color: rgba(71, 24, 115, 0.864);
+    box-shadow: 2px 2px 5px black;
+}
+
+.card ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    margin: 15px;
     gap: 15px;
     justify-content: center;
 }
-.card-prod{
+
+.card-prod {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,46 +216,139 @@ h1{
     gap: 10px;
     background-color: rgba(37, 11, 108, 0.607);
 }
-.card-prod img{
+
+.card-prod img {
     height: 250px;
     align-items: center;
 }
+
 .card-prod li {
     list-style: none;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    color: aliceblue;
 }
-.card-prod button{
+
+.card-prod button {
     padding: 8px;
     border-radius: 15px;
     font-weight: bold;
 }
-.card-prod button:hover{
+
+.card-prod button:hover {
     background-color: goldenrod;
     color: rgb(32, 9, 65);
 }
 
+.card .stock {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 15px;
+    gap: 5px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.card .stock form {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.card .stock input[type="text"],
+.card .stock input[type="file"] {
+    text-align: center;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.grabar {
+    border-radius: 40%;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.grabar:hover {
+    background-color: goldenrod;
+}
+
+.card .datos {
+    background-color: rgba(45, 45, 97, 0.568);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 15px;
+    max-width: 300px;
+    border-style: double;
+    margin-bottom: 10px;
+}
+
+.card form .registro,
+.login {
+    font-weight: bold;
+    border-radius: 35px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.card form .registro:hover {
+    background-color: goldenrod;
+    color: red;
+}
+
+.card form .login:hover {
+    background-color: goldenrod;
+    color: red;
+}
+
+@media (max-width: 690px) {
+    .card .stock {
+        display: flex;
+        width: auto;
+        flex-direction: column;
+        margin: auto;
+    }
+}
+
 /* CHAT */
-.chat{
+.chat {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 10px;
-}
-.bienve-chat{
-    text-align: center;
-}
-#mensajes{
-    flex-grow: 1;
-    width: 100%; 
-    height: 350px;
-    overflow-y: scroll;
-    box-shadow: 0px 0px 5px #333 inset;
-    padding: 5px;
-    background-color: rgba(48, 118, 188, 0.746);
+    align-items: center;
+    background-color: rgba(245, 245, 220, 0.631);
 }
 
-.mensaje{
-    width: auto;
+.bienve-chat {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.chat input {
+    width: 70%;
+    justify-content: center;
+    padding: 5px;
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+#mensajes {
+    flex-grow: 1;
+    width: 95%;
+    max-width: 600px;
+    height: 250px;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 5px #333 inset;
+    padding: 10px;
+    background-color: rgba(48, 118, 188, 0.746);
+    margin: 0 auto;
+}
+
+.mensaje {
     border: 1px solid #555;
     border-radius: 5px;
     padding: 5px;
@@ -174,25 +357,47 @@ h1{
     margin-top: 5px;
 }
 
-#usuarios{
+#usuarios {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.paginas{
+.paginas {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
 }
-.paginas a{
+
+.paginas a {
     text-decoration: none;
     font-family: 'Segoe UI';
     font-weight: bold;
     font-size: 17px;
     color: rgb(16, 16, 98);
 }
-.paginas a:hover{
+
+.paginas a:hover {
     color: rgb(112, 89, 31);
+}
+
+.logo img{
+    height: 150px;
+    padding: 15px;
+}
+
+.info-registro{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(11, 11, 50);
+    justify-content: center;
+}
+.info-registro span{
+    font-size: 19px;
+    padding: 15px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px black;
 }

@@ -1,0 +1,43 @@
+<div class="header">
+    <h1>Bienvenido,@!!!</h1> 
+    <span class="titulo">{{usuario._doc.name}} {{usuario._doc.last_name}}</span>
+    <img src="/img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+</div>
+<hr>
+
+<div class="main-pag">
+
+    <div class="menu2">
+        {{>menu}}
+    </div>
+    
+    <div class="card">
+        <h2>Mis Datos:</h2>
+        <br>
+
+        <div class="datos">
+            <span>
+                <p>Nombre: </p><strong>{{usuario._doc.name}}</strong> <br>
+                <p>Apellido: </p><strong>{{usuario._doc.last_name}}</strong> <br>
+                <p>Email: </p><strong>{{usuario._doc.email}}</strong>
+            </span>
+        </div>
+
+
+    </div>
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>

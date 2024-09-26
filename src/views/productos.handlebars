@@ -1,5 +1,5 @@
 <div class="header">
-    <h1>Stock de Productos</h1>
+    <h1>Productos</h1>
 
     <img src="./img/logo-punto-feliz.png" alt="logo">
 
@@ -8,19 +8,23 @@
         <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
     </div>
 </div>
+
 <hr>
 
 <div class="main-pag">
 
-    <div class="menu-pag">
-        <a href="/">Inicio</a>
-        <a href="/stock">Stock</a>
-        <a href="/carrito/{{carrito._id}}">Carrito</a>
-        <a href="/chat">Chat</a>
-        <a href="/usuarios">Usuarios</a>
+    <div class="menu2">
+        {{>menu}}
     </div>
 
     <div class="card">
+
+        <input type="text" name="web" value="web" hidden>
+
+        {{#if error}}
+        <div style="font-weight:bolder; font-size:18px; color:red">{{error}}</div> <br>
+        {{/if}}
+
         <input type="text" value="{{carrito._id}}" hidden id="carrito">
         <ul id="productos">
 
@@ -29,20 +33,21 @@
                 <p><img src="{{image}}" alt="{{name}}"></p>
                 <li><strong>Nombre: </strong>{{name}}</li>
                 <li><strong>Descripcion: </strong>{{description}}</li>
-                <li><strong>Categoria: </strong>{{category}}</li> 
-                <li><strong>Precio: </strong>{{price}}</li> 
-                <li><strong>Stock: </strong>{{stock}}</li> 
-                
+                <li><strong>Categoria: </strong>{{category}}</li>
+                <li><strong>Precio: </strong>{{price}}</li>
+                <li><strong>Stock: </strong>{{stock}}</li>
+
                 <button onclick="comprar('{{_id}}')">
                     Agregar al Carrito
-                </button>    
+                </button>
             </div>
 
             {{/each}}
 
         </ul>
-
+        <br>
         <a href="/carrito/{{carrito._id}}">Ver Carrito</a>
+        <br>
     </div>
 </div>
 

@@ -3,11 +3,14 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import { Visitas } from './dao/models/visitasModelo.js';
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
 import { router as carritoRouter } from './router/cartRouter.js';
 import { router as usuariosRouter } from './router/usuariosRouter.js';
+import { router as sessionRouter} from './router/session.router.js';
 
 const port = 3000;
 const app = express();
@@ -25,6 +28,11 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(express.static('./src/public'));
 app.use(cookieParser());
+app.use(session({
+    secret: "Fede123",
+    resave: true,
+    saveUninitialized: true
+}));
 
 app.use("/api/carts", carritoRouter);
 app.use("/api/products",(req,res,next)=>{
@@ -33,6 +41,7 @@ app.use("/api/products",(req,res,next)=>{
     next();
 } ,productRouter);
 app.use("/api/usuarios", usuariosRouter);
+app.use("/api/session", sessionRouter);
 app.use("/", vistasRouter);
 
 const serverHTP = app.listen(port, ()=>{
@@ -78,3 +87,13 @@ io.on("connection", socket=>{
         }
     })
 })
+
+async function inicializarVisitas() {
+    let visitas = await Visitas.findOne();
+    if (!visitas) {
+        visitas = new Visitas({ contador: 0 });
+        await visitas.save();
+    }
+}
+
+inicializarVisitas();

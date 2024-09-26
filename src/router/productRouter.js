@@ -7,6 +7,7 @@ const productManager = new Prod();
 export const router = Router();
 
 router.get('/', async (req, res) => {
+
     let productos;
     try {
         productos = await productManager.getAll();
@@ -14,9 +15,9 @@ router.get('/', async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` })
     }
-
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ productos });
+
 });
 
 router.post('/', upload.single("prod"), async (req, res) => {
@@ -27,13 +28,13 @@ router.post('/', upload.single("prod"), async (req, res) => {
         return res.status(400).json({ error: `Complete las propiedades faltantes` });
     }
 
-    if(req.file) {
+    if (req.file) {
         image = req.file;
     }
 
     let existe;
     try {
-        existe = await productManager.getBy({name});
+        existe = await productManager.getBy({ name });
 
         if (existe) {
             res.setHeader('Content-Type', 'application/json');
@@ -65,7 +66,7 @@ router.post('/', upload.single("prod"), async (req, res) => {
     req.io.emit("nuevoProd", name);
 
     res.setHeader('Content-Type', 'application/json');
-    return res.status(201).json({ payload: "producto creado", nuevoProducto });
+    return res.redirect("/stock");
 });
 
 router.put('/', async (req, res) => {

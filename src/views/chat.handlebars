@@ -12,12 +12,9 @@
 <hr>
 
 <div class="main-pag">
-    <div class="menu-pag">
-        <a href="/">Inicio</a>
-        <a href="/stock">Stock</a>
-        <a href="/productos">Productos</a>
-        <a href="/carrito/{{carrito._id}}">Carrito</a>
-        <a href="/usuarios">Usuarios</a>
+
+    <div class="menu2">
+        {{>menu}}
     </div>
 
     <div class="chat">
@@ -27,7 +24,7 @@
             <span>Así entre todos podamos tener una mayor cordialidad y gentileza.</span>
         </div>
 
-        <input type="text" id="mensaje">
+        <strong>Escribe aquí abajo: </strong><input type="text" id="mensaje">
         <div id="mensajes">
 
         </div>
