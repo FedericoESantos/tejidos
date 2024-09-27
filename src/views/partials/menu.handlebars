@@ -3,22 +3,11 @@
         <a href="/">Home</a>
     </li>
 
+    {{#if login}}
     <p class="link">||</p>
 
     <li>
-        <a href="/stock">Stock</a>
-    </li>
-
-    <p class="link">||</p>
-
-    <li>
-        <a href="/productos">Productos</a>
-    </li>
-
-    <p class="link">||</p>
-
-    <li>
-        <a href="/carrito/{{carrito._id}}">Carrito</a>
+        <a href="/perfil">Perfil</a>
     </li>
 
     <p class="link">||</p>
@@ -30,9 +19,16 @@
     <p class="link">||</p>
 
     <li>
-        <a href="/usuarios">Usuarios</a>
+        <a href="/carrito/{{carrito._id}}">Carrito</a>
     </li>
 
+    <p class="link">||</p>
+
+    <li>
+        <a href="/api/session/logout">Loguout</a>
+    </li>
+
+    {{else}}
     <p class="link">||</p>
 
     <li>
@@ -45,16 +41,23 @@
         <a href="/login">Logueate</a>
     </li>
 
+    {{/if}}
+
     <p class="link">||</p>
 
     <li>
-        <a href="/api/session/logout">Loguout</a>
+        <a href="/productos">Productos</a>
     </li>
 
     <p class="link">||</p>
 
     <li>
-        <a href="/perfil">Perfil</a>
+        <a href="/usuarios">Usuarios</a>
     </li>
 
+    <p class="link">||</p>
+
+    <li>
+        <a href="/stock">Stock</a>
+    </li>
 </ul>

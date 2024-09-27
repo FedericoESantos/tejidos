@@ -1,6 +1,6 @@
 <div class="header">
-    <h1>Bienvenido,@!!!</h1> 
-    <span class="titulo">{{usuario._doc.name}} {{usuario._doc.last_name}}</span>
+    <h1>Bienvenido,@!!!</h1>
+    <span class="titulo">{{usuario.name}} {{usuario.last_name}}</span>
     <img src="/img/logo-punto-feliz.png" alt="logo">
 
     <div class="buscador">
@@ -15,19 +15,37 @@
     <div class="menu2">
         {{>menu}}
     </div>
-    
+
     <div class="card">
         <h2>Mis Datos:</h2>
         <br>
 
         <div class="datos">
             <span>
-                <p>Nombre: </p><strong>{{usuario._doc.name}}</strong> <br>
-                <p>Apellido: </p><strong>{{usuario._doc.last_name}}</strong> <br>
-                <p>Email: </p><strong>{{usuario._doc.email}}</strong>
+                <p>Nombre: </p><strong>{{usuario.name}}</strong> <br>
+                <p>Apellido: </p><strong>{{usuario.last_name}}</strong> <br>
+                <p>Email: </p><strong>{{usuario.email}}</strong>
             </span>
         </div>
 
+        <div class="compra">
+
+            <a href="/productos">
+                <strong>Conoce nuestros Productos: </strong>
+                <img src="/img/iconos/productos.png" alt="icono-compra">
+            </a>
+
+            <a href="/chat">
+                <strong>Ir a la Sala de Chat: </strong>
+                <img src="/img/iconos/chat.png" alt="icono-compra">
+            </a>
+
+            <a href="/carrito/{{carrito._id}}">
+                <strong>Ir a mi Carrito: </strong>
+                <img src="/img/iconos/carrito.png" alt="icono-compra">
+            </a>
+
+        </div>
 
     </div>
 </div>

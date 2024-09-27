@@ -26,24 +26,24 @@
                 <strong>Apellido: </strong> {{last_name}} ||
                 <strong>Email: </strong> {{email}} ||
                 <strong>Rol: </strong> {{rol}} ||
-                <strong>Carrito: </strong> {{carrito._id}} ||
+                <strong>Carrito: </strong> {{carrito}} ||
                 <strong>id: </strong>{{_id}}
             </li>
             {{/each}}
         </ul>
         <br>
         <div class="paginas">
-            <a href="/usuarios?pagina=1">Pagina Principal</a>
+            <a href="/usuarios?pagina=1" class="pagina">Pagina Principal</a>
             <p><strong>|</strong></p>
             {{#if hasPrevPage}}
-            <a href="/usuarios?pagina={{prevPage}}">Anterior</a>
+            <a href="/usuarios?pagina={{prevPage}}" class="pagina">Anterior</a>
             {{/if}}
             <p><strong>|</strong></p>
             {{#if hasNextPage}}
-            <a href="/usuarios?pagina={{nextPage}}">Siguiente</a>
+            <a href="/usuarios?pagina={{nextPage}}" class="pagina">Siguiente</a>
             {{/if}}
             <p><strong>|</strong></p>
-            <a href="usuarios?pagina={{totalPages}}">Ultima Página</a>
+            <a href="usuarios?pagina={{totalPages}}" class="pagina">Ultima Página</a>
         </div>
 
     </div>

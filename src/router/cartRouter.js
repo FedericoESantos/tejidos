@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { isValidObjectId } from 'mongoose';
 import { CarritoManagerMongo as carrito } from '../dao/carritoManagerMongo.js';
 import { productManagerMongo as prod } from '../dao/productManagerMongo.js';
+import { auth } from '../middleware/auth.js';
 
 export const router = Router();
 
@@ -9,7 +10,7 @@ const carritoManager = new carrito();
 const productManager = new prod();
 
 
-router.post('/:cid/product/:pid', async (req, res) => {
+router.post('/:cid/product/:pid', auth, async(req, res) => {
 
     let { cid, pid } = req.params;
     if (!isValidObjectId(cid) || !isValidObjectId(pid)) {

@@ -19,6 +19,7 @@
     <div class="card">
 
         <ul id="carrito">
+            {{#if carrito.productos.length}}
 
             {{#each carrito.productos}}
             <div class="card-prod">
@@ -29,9 +30,15 @@
                 </li>
             </div>
             {{/each}}
-
+            {{else}}
+            <img src="/img/iconos/vacio.png" alt="carrito-vacio" class="vacio-car">
+            <strong class="vacio">Tu carrito está vacío.</strong>
+            {{/if}}
         </ul>
-        <a href="/productos">Seguir Comprando</a>
+        <a href="/productos" class="seguir-comp">
+            <img src="/img/iconos/compra.png" alt="icono-compra">
+            Seguir Comprando
+        </a>
     </div>
 </div>
 

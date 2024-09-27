@@ -33,6 +33,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use((req, res, next) => {
+    res.locals.login = !!req.session.usuario;  
+    next();
+});
 
 app.use("/api/carts", carritoRouter);
 app.use("/api/products",(req,res,next)=>{

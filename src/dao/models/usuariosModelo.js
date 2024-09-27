@@ -4,7 +4,7 @@ import mongoosePaginate from "mongoose-paginate-v2";
 
 const usuarioSchema = new mongoose.Schema({
     name: String,
-    last_name : String,
+    last_name: String,
     email: {
         type: String,
         unique: true,
@@ -20,9 +20,9 @@ const usuarioSchema = new mongoose.Schema({
         ref: "carritos",
     },
 },
-{
-    timestamps:true, strict: false
-}
+    {
+        timestamps: true, strict: false
+    }
 );
 
 usuarioSchema.plugin(mongoosePaginate);

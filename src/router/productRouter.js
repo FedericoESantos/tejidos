@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { productManagerMongo as Prod } from '../dao/productManagerMongo.js';
 import { upload } from '../utils.js';
+import { auth } from '../middleware/auth.js';
 
 const productManager = new Prod();
 
@@ -20,7 +21,7 @@ router.get('/', async (req, res) => {
 
 });
 
-router.post('/', upload.single("prod"), async (req, res) => {
+router.post('/', upload.single("prod"), auth, async(req, res) => {
     let { name, description, price, image, category, stock } = req.body;
 
     if (!name || !description || !price || !category || !stock) {
@@ -69,7 +70,7 @@ router.post('/', upload.single("prod"), async (req, res) => {
     return res.redirect("/stock");
 });
 
-router.put('/', async (req, res) => {
+router.put('/', async(req, res) => {
     let { id } = req.params;
     let updates = req.body;
 
@@ -97,7 +98,7 @@ router.put('/', async (req, res) => {
     return res.status(200).json({ payload: 'Producto actualizado', productoActualizado });
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async(req, res) => {
     let { id } = req.params;
     id = Number(id);
     if (isNaN(id)) {

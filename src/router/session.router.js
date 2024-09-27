@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import { usuarioManagerMongo as UsuariosManager } from '../dao/usuarioManagerMongo.js';
 import { generaHash } from '../utils.js';
+import { CarritoManagerMongo as CarritoManager} from '../dao/carritoManagerMongo.js';
 
 const usuariosManager = new UsuariosManager();
+const carritoManager = new CarritoManager();
 
 export const router = Router();
 
 router.post('/registro', async (req, res) => {
-    let { name, last_name, email, password, web } = req.body;
+    let { name, last_name, email, password} = req.body;
 
     if (!name || !last_name || !email || !password) {
         if(web){
@@ -39,21 +41,13 @@ router.post('/registro', async (req, res) => {
     }
 
     password = generaHash(password);
-
+    let nuevoCarrito;
     let nuevoUsuario;
-
     try {
-        if(web){
-            return res.redirect("/login?ok= Registro Correctamente. Ahora logueese sin problemas :D");
-        }else{
-
-            nuevoUsuario = await usuariosManager.create({ name, last_name, email, password});
+            nuevoCarrito = await carritoManager.create();
+            nuevoUsuario = await usuariosManager.create({ name, last_name, email, password, carrito:nuevoCarrito._id});
             res.setHeader('Content-Type', 'application/json');
-            return res.status(200).json({
-                message: "Registro correctamente ...!!! :D",
-                nuevoUsuario
-            });
-        }
+            return res.redirect("/login?ok= Registro Correctamente. Ahora logueese sin problemas :D");
     } catch (error) {
         console.log(error.message);
         res.setHeader('Content-Type', 'application/json');
@@ -78,7 +72,8 @@ router.post('/login', async (req, res) => {
 
     let usuario;
     try {
-        usuario = await usuariosManager.getBy({ email, password:generaHash(password)});
+        usuario = await usuariosManager.getByPopulate({ email, password:generaHash(password)});
+        console.log(usuario);
         if(!usuario){
             if(web){
                 return res.redirect("/login?error=Credenciales Invalidas o Datos Incorrectos");
