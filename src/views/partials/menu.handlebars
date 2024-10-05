@@ -1,11 +1,6 @@
 <ul>
-    <li>
-        <a href="/">Home</a>
-    </li>
 
     {{#if login}}
-    <p class="link">||</p>
-
     <li>
         <a href="/perfil">Perfil</a>
     </li>
@@ -14,6 +9,12 @@
 
     <li>
         <a href="/chat">Chat</a>
+    </li>
+
+    <p class="link">||</p>
+    
+    <li>
+        <a href="/productos">Productos</a>
     </li>
 
     <p class="link">||</p>
@@ -29,6 +30,11 @@
     </li>
 
     {{else}}
+
+    <li>
+        <a href="/">Home</a>
+    </li>
+
     <p class="link">||</p>
 
     <li>
@@ -46,18 +52,19 @@
     <p class="link">||</p>
 
     <li>
-        <a href="/productos">Productos</a>
-    </li>
-
-    <p class="link">||</p>
-
-    <li>
         <a href="/usuarios">Usuarios</a>
     </li>
-
+    
     <p class="link">||</p>
 
     <li>
         <a href="/stock">Stock</a>
     </li>
+
+    <p class="link">||</p>
+
+    <li>
+        <a href="/contacto">Contacto</a>
+    </li>
+
 </ul>

@@ -2,38 +2,43 @@ import { Router } from 'express';
 import { productManagerMongo as Prod } from '../dao/productManagerMongo.js';
 import { CarritoManagerMongo as carrito } from '../dao/carritoManagerMongo.js';
 import { usuarioManagerMongo as user } from '../dao/usuarioManagerMongo.js';
-import { auth } from '../middleware/auth.js';
 import { Visitas } from '../dao/models/visitasModelo.js';
 import { isValidObjectId } from 'mongoose';
+import passport from 'passport';
+import { passportCall } from '../utils.js';
+import { auth } from '../middleware/auth.js';
 
 let productManager = new Prod();
 let cartManager = new carrito();
 let userManager = new user();
 
-
 export const router = Router();
 
 router.get('/', async(req, res) => {
-    let carrito = await cartManager.getBy();
-
-    if (!req.session.visitaRegistrada) {
+    let login = req.user;
+    if (!req.visitaRegistrada) {
         let visitas = await Visitas.findOne();
 
         visitas.contador++;
         await visitas.save();
 
-        req.session.visitaRegistrada = true;
+        req.visitaRegistrada = true;
     }
 
     let visitas = await Visitas.findOne();
     let visitasTexto = `Visitas al Sitio: ${visitas.contador}`;
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("home", { visitas: visitasTexto, carrito, title: "Punto Feliz" });
+    return res.status(200).render("home", { 
+        login,
+        usuario: req.user,
+        visitas: visitasTexto,
+        title: "Punto Feliz" });
 });
 
-router.get('/stock', async(req, res) => {
-    let carrito = await cartManager.getBy();
+router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
+    let login = req.user;
+
     let productos;
     try {
         productos = await productManager.getAll();
@@ -43,13 +48,19 @@ router.get('/stock', async(req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("stock", { carrito, productos, title: "Punto Feliz" });
+    return res.status(200).render("stock", { 
+        login,
+        usuario: req.user,
+        productos,
+        title: "Punto Feliz" });
 });
 
-router.get('/productos', auth, async(req, res) => {
+router.get('/productos', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]),async(req, res) => {
+    let login = req.user;    
     let { error } = req.query;
+
     let carrito = {
-        _id: req.session.usuario.carrito._id
+        _id: req.user._doc.carrito
     }
     let productos;
     try {
@@ -61,6 +72,8 @@ router.get('/productos', auth, async(req, res) => {
 
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("productos", {
+        login,
+        usuario: req.user,
         productos,
         error,
         carrito,
@@ -68,7 +81,8 @@ router.get('/productos', auth, async(req, res) => {
     });
 });
 
-router.get('/carrito/:cid', async(req, res) => {
+router.get('/carrito/:cid', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]), async(req, res) => {
+    let login = req.user;
     let { cid } = req.params;
 
     if (!isValidObjectId(cid)) {
@@ -90,20 +104,30 @@ router.get('/carrito/:cid', async(req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("carrito", { carrito, title: "Punto Feliz" });
+    return res.status(200).render("carrito", { 
+        login,
+        carrito,
+        usuario: req.user,
+        title: "Punto Feliz" 
+    });
 });
 
-router.get('/chat', auth, async(req, res) => {
+router.get('/chat', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]), async(req, res) => {
+    let login = req.user;
     let carrito = await cartManager.getBy();
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("chat", { carrito, title: "Punto Feliz" });
+    return res.status(200).render("chat", { 
+        login,
+        carrito,
+        usuario: req.user,
+        title: "Punto Feliz" });
 });
 
-router.get('/usuarios', async(req, res) => {
-    let carrito = await cartManager.getBy();
+router.get('/usuarios', passportCall("jwt"), auth(["admin"]), async(req, res) => {
 
     let { pagina } = req.query;
+
     if (!pagina) {
         pagina = 1;
     }
@@ -111,8 +135,8 @@ router.get('/usuarios', async(req, res) => {
 
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("usuarios", {
+        usuario: req.user,
         usuarios,
-        carrito,
         totalPages,
         hasPrevPage,
         hasNextPage,
@@ -127,22 +151,41 @@ router.get('/registro', async(req, res) => {
     let { error } = req.query;
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("registro", { error, carrito, title: "Punto Feliz" });
+    return res.status(200).render("registro", { 
+        error,
+        carrito,
+        title: "Punto Feliz" });
 });
 
 router.get('/login', async(req, res) => {
     let carrito = await cartManager.getBy();
     let { error, ok } = req.query;
-
+    
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("login", { error, ok, carrito, title: "Punto Feliz" });
+    return res.status(200).render("login", { 
+        error,
+        ok,
+        carrito,
+        title: "Punto Feliz" });
 });
 
-router.get('/perfil', auth, async(req, res) => {
-    let usuario = req.session.usuario;
-    let carrito = await cartManager.getBy({_id:usuario.carrito._id});
+router.get('/perfil', passportCall("jwt"), auth(["user","admin"]), async(req, res) => {
+    let login = req.user;
+    let usuario = req.user._doc;
+    let { error } = req.query;
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("perfil", { usuario, carrito, title: "Punto Feliz" });
+    return res.status(200).render("perfil", { 
+        error, 
+        usuario,
+        login,
+        title: "Punto Feliz" });
 });
+
+router.get("/contacto", async(req,res)=>{
+    let { mensaje, error } = req.query;
+
+    res.setHeader(`Content-Type`,`text/html`);
+    return res.status(200).render("contacto",{mensaje, error, title:"Punto Feliz"});
+})
 

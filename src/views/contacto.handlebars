@@ -1,0 +1,82 @@
+<div class="header">
+    <h1>Contacto</h1>
+
+    <img src="/img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+</div>
+<hr>
+
+<div class="main-pag">
+
+    <div class="menu2">
+        {{>menu}}
+
+    </div>
+
+    <div class="card">
+        <div class="info-registro">
+            <span>
+                Dejanos tu comentario o duda con respecto a este sitio <br>
+                que a la brevedad te estaremos respondiendo.
+            </span>
+        </div>
+
+        <div class="correo">
+            {{#if mensaje}}
+            <div style="font-weight:bolder; font-size:18px; color:rgb(31, 155, 72)">{{mensaje}}</div>
+            <br>
+            {{/if}}
+
+            {{#if error}}
+            <div style="font-weight:bolder; font-size:18px; color:red">{{error}}</div>
+            <br>
+            {{/if}}
+
+            <h2>Contacto</h2>
+
+            <br>
+            <img src="/img/iconos/contacto.png" alt="contacto">
+            <h3>Dejenos su mensaje aquí:</h3>
+
+            <br>
+            <hr>
+            <br>
+
+            <form action="/api/mensajes" method="post" enctype="multipart/form-data">
+                <div class="input">
+                    <strong>Asunto: </strong> <input type="text" name="subject" placeholder="Asunto">
+                </div>
+
+                <div class="mensaje-contacto">
+                    <strong>Mensaje</strong>
+                    <textarea name="message" id="mensaje"
+                        placeholder="Envianos tu consulta que la responderemos en instantes" rows="15"
+                        cols="50"></textarea>
+
+                    <div class="enviar-archivos">
+                        <input type="file" name="contacto" multiple />
+                        <input type="submit" value="Enviar">
+                    </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>

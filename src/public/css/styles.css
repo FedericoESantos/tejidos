@@ -401,6 +401,7 @@ li {
     justify-content: center;
 }
 .info-registro span{
+    text-align: center;
     font-size: 19px;
     padding: 15px;
     color: rgb(255, 255, 255);
@@ -441,3 +442,39 @@ li {
 .vacio-car{
     height: 50px;
 }
+
+.correo{
+    max-width: 500px;
+    width: 100%;
+    margin: 20px;
+    height: auto;
+}
+.correo img{
+    height: 50px;
+}
+.correo form .input{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.correo form .input input{
+    width: 50%;
+    margin: 5px;
+}
+.mensaje-contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-items: center;
+}
+.mensaje-contacto strong{
+    margin: 5px;
+}
+.mensaje-contacto textarea {
+    resize: none;
+    width: 90%; 
+    height: 200px;
+ }
+ .enviar-archivos{
+    margin: 10px;
+ }

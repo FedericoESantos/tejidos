@@ -16,21 +16,24 @@
 
     <div class="menu2">
         {{>menu}}
+
     </div>
 
     <div class="card">
+        
         <div class="stock">
             <form action="/api/products" method="post" enctype="multipart/form-data">
-            <input type="file" name="prod">
-            <input type="text" name="name" placeholder="nombre del producto">
-            <input type="text" name="description" placeholder="descripcion del producto">
-            <input type="text" name="category" placeholder="categoria del producto">
-            <input type="text" name="price" placeholder="precio del producto">
-            <input type="text" name="stock" placeholder="stock del producto">
+                
+                <input type="file" name="prod">
+                <input type="text" name="name" placeholder="nombre del producto">
+                <input type="text" name="description" placeholder="descripcion del producto">
+                <input type="text" name="category" placeholder="categoria del producto">
+                <input type="text" name="price" placeholder="precio del producto">
+                <input type="text" name="stock" placeholder="stock del producto">
 
-            <img src="{{img}}" alt="{{name}}">
-            <br>
-            <input type="submit" value="Grabar" class="grabar">
+                <img src="{{img}}" alt="{{name}}">
+                <br>
+                <input type="submit" value="Grabar" class="grabar">
             </form>
         </div>
 

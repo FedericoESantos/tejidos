@@ -3,14 +3,17 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import session from 'express-session';
 import { Visitas } from './dao/models/visitasModelo.js';
+import { initPassport } from './config/passportConfig.js';
+import passport from 'passport';
+import jwt from "jsonwebtoken";
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
 import { router as carritoRouter } from './router/cartRouter.js';
 import { router as usuariosRouter } from './router/usuariosRouter.js';
 import { router as sessionRouter} from './router/session.router.js';
+import { router as mensajesRouter} from './router/mensajesRouter.js';
 
 const port = 3000;
 const app = express();
@@ -25,18 +28,12 @@ app.set('views', ('./src/views'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
 
 app.use(express.static('./src/public'));
-app.use(cookieParser());
-app.use(session({
-    secret: "Fede123",
-    resave: true,
-    saveUninitialized: true
-}));
-app.use((req, res, next) => {
-    res.locals.login = !!req.session.usuario;  
-    next();
-});
+
+initPassport();
+app.use(passport.initialize());
 
 app.use("/api/carts", carritoRouter);
 app.use("/api/products",(req,res,next)=>{
@@ -46,6 +43,7 @@ app.use("/api/products",(req,res,next)=>{
 } ,productRouter);
 app.use("/api/usuarios", usuariosRouter);
 app.use("/api/session", sessionRouter);
+app.use("/api/mensajes", mensajesRouter);
 app.use("/", vistasRouter);
 
 const serverHTP = app.listen(port, ()=>{
