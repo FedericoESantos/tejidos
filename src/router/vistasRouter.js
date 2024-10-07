@@ -15,17 +15,18 @@ let userManager = new user();
 export const router = Router();
 
 router.get('/', async(req, res) => {
+
     let login = req.user;
-    if (!req.visitaRegistrada) {
-        let visitas = await Visitas.findOne();
-
-        visitas.contador++;
-        await visitas.save();
-
-        req.visitaRegistrada = true;
-    }
+    let ip = req.ip; 
 
     let visitas = await Visitas.findOne();
+
+    if (!visitas.ipAddresses.includes(ip)) {
+        visitas.contador++;
+        visitas.ipAddresses.push(ip);
+        await visitas.save();
+    }
+
     let visitasTexto = `Visitas al Sitio: ${visitas.contador}`;
 
     res.setHeader('Content-Type', 'text/html');
@@ -33,8 +34,9 @@ router.get('/', async(req, res) => {
         login,
         usuario: req.user,
         visitas: visitasTexto,
-        title: "Punto Feliz" });
-});
+        title: "Punto Feliz" 
+    });
+ });
 
 router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
     let login = req.user;

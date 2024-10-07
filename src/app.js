@@ -38,8 +38,8 @@ app.use(passport.initialize());
 
 app.use("/api/carts", carritoRouter);
 app.use("/api/products",(req,res,next)=>{
-    req.io = io;    
-    
+    req.io = io;
+
     next();
 } ,productRouter);
 app.use("/api/usuarios", usuariosRouter);
@@ -90,13 +90,3 @@ io.on("connection", socket=>{
         }
     })
 })
-
-async function inicializarVisitas() {
-    let visitas = await Visitas.findOne();
-    if (!visitas) {
-        visitas = new Visitas({ contador: 0 });
-        await visitas.save();
-    }
-}
-
-inicializarVisitas();

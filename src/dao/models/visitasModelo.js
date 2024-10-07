@@ -4,6 +4,10 @@ const VisitasSchema = new mongoose.Schema({
     contador: {
         type: Number,
         default: 0
+    },
+    ipAddresses: {
+        type: [String], 
+        default: []
     }
 });
 
