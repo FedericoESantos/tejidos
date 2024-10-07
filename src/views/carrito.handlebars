@@ -17,6 +17,14 @@
     </div>
 
     <div class="card">
+        <br>
+        {{#if error}}
+        <div style="font-weight:bolder; font-size:18px; color:rgb(182, 19, 51)">{{error}}</div> <br>
+        {{/if}}
+
+        {{#if ok}}
+        <div style="font-weight:bolder; font-size:18px; color:rgb(94, 229, 22)">{{error}}</div> <br>
+        {{/if}}
 
         <ul id="carrito">
             {{#if carrito.productos.length}}
@@ -35,10 +43,21 @@
             <strong class="vacio">Tu carrito está vacío.</strong>
             {{/if}}
         </ul>
-        <a href="/productos" class="seguir-comp">
-            <img src="/img/iconos/compra.png" alt="icono-compra">
-            Seguir Comprando
-        </a>
+
+        <div class="links">
+
+            <a href="/productos" class="links-carr">
+                <img src="/img/iconos/compra.png" alt="icono-compra">
+                Seguir Comprando
+            </a>
+
+            <a href="/api/carts/{{carrito._id}}/comprar" class="links-carr">
+            <img src="/img/iconos/finalizar.png" alt="icono-compra">
+            Finalizar Compra
+            </a>
+
+        </div>
+
     </div>
 </div>
 

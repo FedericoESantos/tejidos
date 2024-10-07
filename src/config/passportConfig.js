@@ -4,8 +4,10 @@ import passportJWT from "passport-jwt";
 
 import { usuarioManagerMongo as UsuarioManager } from "../dao/usuarioManagerMongo.js";
 import { generaHash, secret, validaPassword } from "../utils.js";
+import { CarritoManagerMongo as CarritoManager} from "../dao/carritoManagerMongo.js";
 
 const usuarioManager = new UsuarioManager();
+let carritoManager = new CarritoManager();
 
 export const initPassport = () => {
 
@@ -26,21 +28,31 @@ const buscaToken=(req)=>{
                 usernameField: "email",
                 passReqToCallback: true
             },
-            async (req, usename, password, done) => {
+            async (req, username, password, done) => {
                 try {
-                    let { nombre, last_name, email, password } = req.body;
-                    if (!nombre) {
+                    let { name, last_name, email, password } = req.body;
+                    if (!name || !last_name || !email || !password){
                         return done(null, false);
                     }
 
-                    let existe = await usuarioManager.getBy({ email: usename });
+                    let existe = await usuarioManager.getBy({ email: username });
                     if (existe) {
-                        return done(null, false);
+                        return done(null, false, { message: 'El usuario ya existe en la base de datos' });
                     }
 
+                    let carrito = await carritoManager.create({});
+                    if (!carrito) {
+                        return done(null, false, { message: 'No se pudo asignar un carrito al usuario' });
+                    }
                     password = generaHash(password);
 
-                    let nuevoUsuario = await usuarioManager.create({ name, last_name, email, password });
+                    let nuevoUsuario = await usuarioManager.create({
+                        name,
+                        last_name,
+                        email,
+                        password,
+                        carrito: carrito._id
+                     });
                     return done(null, nuevoUsuario);
 
                 } catch (error) {
@@ -60,22 +72,30 @@ const buscaToken=(req)=>{
                 try {
                     let usuario = await usuarioManager.getBy({ email: username });
                     if (!usuario) {
-                        return done(null, false);
+                        return done(null, false, {message: "Login : No existe usuario"});
                     }
-
+    
                     if (!validaPassword(password, usuario.password)) {
-                        return done(null, false);
+                        return done(null, false, { message: "Login: Credenciales Invalidas"});
                     }
 
-                    return done(null, usuario);
-
+                    let carrito = await carritoManager.getByPopulate({ _id: usuario._doc.carrito._id });                    
+                    //console.log(carrito._id);
+                    if(!carrito) {
+                        let carritoNuevo = await carritoManager.create();
+                        usuario.carrito = carrito.carritoNuevo._id;
+                        await usuarioManager.update(usuario._id, usuario);
+                    }
+    
+                    return done(null, usuario, { message: "Carrito nuevo creado y asociado al usuario" });
+    
                 }catch (error) {
                     return done(error);
                 }
             }
         )
-    )
-
+    );
+    
     passport.use(
         "jwt",
         new passportJWT.Strategy(
@@ -93,7 +113,5 @@ const buscaToken=(req)=>{
             }
         )
     ) 
-
-
 
 }

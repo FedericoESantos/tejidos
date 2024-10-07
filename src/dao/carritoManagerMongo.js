@@ -6,11 +6,11 @@ export class CarritoManagerMongo{
         return await carritoModelo.find().lean();
     }
 
-    async getBy(filtro){
+    async getBy(filtro={}){
         return await carritoModelo.findOne(filtro).lean();
     }
 
-    async getByPopulate(filtro){
+    async getByPopulate(filtro={}){
         return await carritoModelo.findOne(filtro).populate("productos.producto").lean();
     }
 

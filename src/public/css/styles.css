@@ -478,3 +478,48 @@ li {
  .enviar-archivos{
     margin: 10px;
  }
+.links{
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+}
+.links .links-carr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    color: rgb(31, 31, 95);
+}
+.links .links-carr img{
+    width: 50px;
+}
+.links .links-carr:hover{
+    color: rgb(22, 127, 201);
+}
+
+.ticket{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 30px;
+    padding: 35px;
+    border-radius: 10%;
+    border-style: groove;
+    max-width: 100%;
+    background-color: rgb(106, 79, 131);
+}
+
+.carrito-volver .links-carr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    color: rgb(31, 31, 95);
+}
+.carrito-volver .links-carr img{
+    height: 50px;
+}

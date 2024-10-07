@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import { Visitas } from './dao/models/visitasModelo.js';
 import { initPassport } from './config/passportConfig.js';
 import passport from 'passport';
-import jwt from "jsonwebtoken";
+import cors from 'cors';
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
@@ -29,6 +29,7 @@ app.set('views', ('./src/views'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
+app.use(cors());
 
 app.use(express.static('./src/public'));
 

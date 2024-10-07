@@ -23,7 +23,7 @@ router.get("/error", (req, res) => {
 router.post('/registro', passport.authenticate("registro", {  session: false, failureRedirect: ("/api/session/error") }), async (req, res) => {
     
     res.setHeader(`Content-Type`, `application/json`);
-    return res.status(200).json({ payload: "registro exitoso" });
+    return res.redirect("/login?ok=Registro exitoso, ahora logueate!!!");
 
 });
 

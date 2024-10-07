@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { enviarMail, upload } from '../utils.js';
+import fs from "fs";
 
 export const router = Router();
 
@@ -24,6 +25,11 @@ router.post('/', upload.array("contacto"), async (req, res) => {
 
     try {
         let resultado = await enviarMail(to, subject, message, adjuntos);
+        
+        req.files.forEach(file => {
+            fs.unlinkSync(file.path); 
+        })
+
         if(resultado.accepted.length > 0 && resultado.rejected.length === 0){
             res.setHeader('Content-Type','application/json');
             return res.status(200).redirect("/contacto?mensaje=Mensaje enviado correctamente, a la brevedad te responderemos!!!");
@@ -42,6 +48,4 @@ router.post('/', upload.array("contacto"), async (req, res) => {
 
     }
 
-    res.setHeader('Content-Type', 'application/json');
-    return res.status(200).json({ ok: "ok" });
 });

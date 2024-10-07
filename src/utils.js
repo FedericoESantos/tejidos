@@ -51,13 +51,13 @@ const transporter = nodemailer.createTransport(
 )
 
 export const enviarMail = async(to, subject, message, attachments) => {
-    return await transporter.sendMail(
-        {
-            from:"Tejidos Punto Feliz | boomarts47@gmail.com",
-            to,
-            subject,
-            html:message,
-            attachments
-        }
-    )
+        return await transporter.sendMail(
+                {
+                    from:"Tejidos Punto Feliz | boomarts47@gmail.com",
+                    to,
+                    subject,
+                    html:message,
+                    attachments
+                }
+            )
 }

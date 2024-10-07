@@ -27,7 +27,7 @@ export class usuarioManagerMongo{
     }
 
     async update(id,usuario){
-        return await usuariosModelo.findByIdAndUpdate(id,usuario,{runValidators:true});
+        return await usuariosModelo.updateOne(id,usuario,{runValidators:true});
     }
 
     async delete(id) {

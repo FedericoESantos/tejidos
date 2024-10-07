@@ -1,0 +1,87 @@
+<div class="header">
+    <h1>Ticket de Compra</h1>
+
+    <img src="/img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+</div>
+<hr>
+
+<div class="main-pag">
+
+    <div class="card">
+        <div class="info-registro">
+            <span>
+                Este es tu ticket de compra con el detalle de la operación. <br>
+                Por favor GUARDA EL NUMERO DE COMPROBANTE para poder cambiarlo por la/s compra/s realizada/s. <br>
+                En breve nos comunicaremos contigo para concretar la compra. <br>
+                Muchas Gracias!!!
+            </span>
+        </div>
+
+        <div class="ticket">
+
+            <strong>Nro. Comprobante: </strong> <strong
+                style="font-weight:bolder; font-size:30px">{{ticket.nroComprobante.nroComp}}</strong> <br>
+            <strong>Fecha: </strong> {{ticket.nroComprobante.fecha}} <br>
+            <strong>Comprador: </strong> <strong style="font-weight:bolder; font-size:20px">
+                {{ticket.nroComprobante.comprador}}</strong> <br>
+
+            <br>
+            <hr>
+            <br>
+
+            <h3>ITEMS</h3>
+            <br>
+            <hr>
+
+            {{#each ticket.nroComprobante.conStock}}
+            <br>
+            <strong>Id: </strong> {{this.id}} <br>
+            <strong>Descripción: </strong> {{this.descripcion}} <br>
+            <strong>Precio: </strong> <strong style="font-weight:bolder; font-size:19px"> $ {{this.precio}}</strong>
+            <br>
+            <strong>Stock Previo a la Compra: </strong> {{this.stockPrevioCompra}} <br>
+            <strong>Stock Post a la compra: </strong> {{this.stockPostCompra}} <br>
+            <strong>Cantidad: </strong> <strong style="font-weight:bolder; font-size:19px">{{this.cantidad}}</strong>
+            <br>
+
+            <strong>Sub Total: </strong> <strong style="font-weight:bolder; font-size:22px"> $ {{this.subtotal}}
+            </strong><br>
+
+            <hr>
+
+            {{/each}}
+
+            <br>
+
+            <strong>TOTAL: </strong> <strong style="font-weight:bolder; font-size:30px">$
+                {{ticket.nroComprobante.total}}</strong>
+
+        </div>
+
+        <div class="carrito-volver">
+            <a href="/carrito/{{carrito._id}}" class="links-carr">
+                <img src="/img/iconos/carrito.png" alt="icono-compra">
+                Volver al Carrito
+            </a>
+
+            <br>
+
+        </div>
+
+    </div>
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>

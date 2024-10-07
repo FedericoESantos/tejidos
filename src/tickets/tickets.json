@@ -1,0 +1,30 @@
+[
+  {
+    "nroComprobante": {
+      "nroComp": 1,
+      "fecha": "2024-10-07T20:48:59.505Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1388,
+          "stockPostCompra": 1386,
+          "cantidad": 2,
+          "subtotal": 3000
+        },
+        {
+          "id": "66f2b9b4e85755712217a8db",
+          "descripcion": "Bufandas largas con bordados especiales",
+          "precio": 2000,
+          "stockPrevioCompra": 9,
+          "stockPostCompra": 8,
+          "cantidad": 1,
+          "subtotal": 2000
+        }
+      ],
+      "total": 5000
+    }
+  }
+]

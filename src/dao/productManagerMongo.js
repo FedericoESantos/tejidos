@@ -20,7 +20,7 @@ export class productManagerMongo{
     }
 
     async update(id, producto){
-        return productosModelo.updateOne({_id:id}, producto);
+        return await productosModelo.updateOne({_id:id}, producto);
     }
 
     async delete(id) {

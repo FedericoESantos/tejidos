@@ -29,7 +29,7 @@ router.get('/', async(req, res) => {
     let visitasTexto = `Visitas al Sitio: ${visitas.contador}`;
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("home", { 
+    return res.status(200).render("home", {
         login,
         usuario: req.user,
         visitas: visitasTexto,
@@ -38,6 +38,7 @@ router.get('/', async(req, res) => {
 
 router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
     let login = req.user;
+    let carrito = await cartManager.getBy();
 
     let productos;
     try {
@@ -48,22 +49,23 @@ router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("stock", { 
+    return res.status(200).render("stock", {
         login,
+        carrito,
         usuario: req.user,
         productos,
         title: "Punto Feliz" });
 });
 
 router.get('/productos', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]),async(req, res) => {
-    let login = req.user;    
+    let login = req.user;
     let { error } = req.query;
+    //let carrito = req.user._doc.carrito; 
+    let carrito = await cartManager.getBy();
+    console.log(carrito);
 
-    let carrito = {
-        _id: req.user._doc.carrito
-    }
     let productos;
-    try {
+        try {
         productos = await productManager.getAll();
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
@@ -73,7 +75,6 @@ router.get('/productos', passport.authenticate("jwt", {session:false}), passport
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("productos", {
         login,
-        usuario: req.user,
         productos,
         error,
         carrito,
@@ -84,6 +85,7 @@ router.get('/productos', passport.authenticate("jwt", {session:false}), passport
 router.get('/carrito/:cid', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]), async(req, res) => {
     let login = req.user;
     let { cid } = req.params;
+    let { error, ok } = req.query;
 
     if (!isValidObjectId(cid)) {
         res.setHeader(`Content-Type`, `application/json`);
@@ -104,11 +106,13 @@ router.get('/carrito/:cid', passport.authenticate("jwt", {session:false}), passp
     }
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("carrito", { 
+    return res.status(200).render("carrito", {
         login,
+        ok,
+        error,
         carrito,
         usuario: req.user,
-        title: "Punto Feliz" 
+        title: "Punto Feliz"
     });
 });
 
@@ -117,15 +121,16 @@ router.get('/chat', passport.authenticate("jwt", {session:false}), passportCall(
     let carrito = await cartManager.getBy();
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("chat", { 
+    return res.status(200).render("chat", {
         login,
         carrito,
         usuario: req.user,
         title: "Punto Feliz" });
 });
 
-router.get('/usuarios', passportCall("jwt"), auth(["admin"]), async(req, res) => {
-
+router.get('/usuarios', passportCall("jwt", {session:false}), auth(["admin"]), async(req, res) => {
+    let login = req.user;
+    let carrito = await cartManager.getBy();
     let { pagina } = req.query;
 
     if (!pagina) {
@@ -135,8 +140,10 @@ router.get('/usuarios', passportCall("jwt"), auth(["admin"]), async(req, res) =>
 
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("usuarios", {
+        login, 
         usuario: req.user,
         usuarios,
+        carrito,
         totalPages,
         hasPrevPage,
         hasNextPage,
@@ -151,7 +158,7 @@ router.get('/registro', async(req, res) => {
     let { error } = req.query;
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("registro", { 
+    return res.status(200).render("registro", {
         error,
         carrito,
         title: "Punto Feliz" });
@@ -160,32 +167,42 @@ router.get('/registro', async(req, res) => {
 router.get('/login', async(req, res) => {
     let carrito = await cartManager.getBy();
     let { error, ok } = req.query;
-    
+
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("login", { 
+    return res.status(200).render("login", {
         error,
         ok,
         carrito,
         title: "Punto Feliz" });
 });
 
-router.get('/perfil', passportCall("jwt"), auth(["user","admin"]), async(req, res) => {
+router.get('/perfil', passportCall("jwt", {session:false}), auth(["user","admin"]), async(req, res) => {
     let login = req.user;
-    let usuario = req.user._doc;
     let { error } = req.query;
+    let usuario = req.user._doc;
+    let carrito = await cartManager.getBy();
 
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("perfil", { 
-        error, 
+    return res.status(200).render("perfil", {
+        error,
+        carrito,
         usuario,
         login,
         title: "Punto Feliz" });
 });
 
-router.get("/contacto", async(req,res)=>{
+router.get("/contacto", passportCall("jwt", {session:false}), auth(["user","admin"]), async(req,res)=>{
     let { mensaje, error } = req.query;
+    let login = req.user;
+    let carrito = await cartManager.getBy();
 
     res.setHeader(`Content-Type`,`text/html`);
-    return res.status(200).render("contacto",{mensaje, error, title:"Punto Feliz"});
+    return res.status(200).render("contacto",{
+        usuario: req.user,
+        carrito,
+        login,
+        mensaje,
+        error,
+        title:"Punto Feliz"});
 })
 
