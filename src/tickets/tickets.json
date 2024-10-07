@@ -26,5 +26,204 @@
       ],
       "total": 5000
     }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 2,
+      "fecha": "2024-10-07T21:07:59.278Z",
+      "comprador": "ruthscocozza@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1386,
+          "stockPostCompra": 1385,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 3,
+      "fecha": "2024-10-07T21:31:42.385Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f55e2a8c6ef58734cb74c3",
+          "descripcion": "Cuellos cerrados con bordados ",
+          "precio": 2000,
+          "stockPrevioCompra": 9,
+          "stockPostCompra": 8,
+          "cantidad": 1,
+          "subtotal": 2000
+        },
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1385,
+          "stockPostCompra": 1384,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 3500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 4,
+      "fecha": "2024-10-07T21:38:31.834Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1384,
+          "stockPostCompra": 1383,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 5,
+      "fecha": "2024-10-07T21:44:32.657Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1383,
+          "stockPostCompra": 1382,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 6,
+      "fecha": "2024-10-07T21:44:34.292Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1382,
+          "stockPostCompra": 1381,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 7,
+      "fecha": "2024-10-07T21:44:35.907Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1381,
+          "stockPostCompra": 1380,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 8,
+      "fecha": "2024-10-07T21:44:41.260Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1380,
+          "stockPostCompra": 1379,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 9,
+      "fecha": "2024-10-07T21:45:11.559Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1379,
+          "stockPostCompra": 1378,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 10,
+      "fecha": "2024-10-07T21:45:23.357Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1378,
+          "stockPostCompra": 1377,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 11,
+      "fecha": "2024-10-07T21:46:11.715Z",
+      "comprador": "esantosAr@gmail.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1377,
+          "stockPostCompra": 1376,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
   }
 ]

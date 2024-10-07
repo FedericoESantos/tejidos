@@ -32,7 +32,6 @@ router.get("/:cid", async (req, res) => {
 
 router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async (req, res) => {
     let { cid } = req.params;
-    let { enviarEmail } = req.body;
 
     if (!isValidObjectId(cid)) {
         return res.status(400).json({ error: "Ingrese cid valido" });
@@ -84,6 +83,7 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
     
     carrito.productos = productosFinales; 
     await carritoManager.update(cid, carrito);
+
     if (conStock.length === 0) {
          return res.redirect(`/carrito/${cid}?error=No existen items en condiciones de ser comprados`);
     }
@@ -99,8 +99,7 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
         conStock,
         total
     });
-
-    
+ 
     // let message = `
     //         Hola ${req.user?._doc.name || ""} <br>
     //         Ha registrado una compra con n° de ticket ${nroComp}, por un importe de $${total} <br>
@@ -123,7 +122,6 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
         carrito,
         ticket,
     });
-
 
 });
 
