@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { productManagerMongo as Prod } from '../dao/productManagerMongo.js';
-import { upload } from '../utils.js';
+import { passportCall, upload } from '../utils.js';
 import { auth } from '../middleware/auth.js';
 
 const productManager = new Prod();
@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     let productos;
     try {
         productos = await productManager.getAll();
+        console.log(productos);
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` })
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 
 });
 
-router.post('/', upload.single("prod"), auth, async(req, res) => {
+router.post('/', upload.single("prod"), passportCall("jwt"), auth(["admin"]), async(req, res) => {
     let { name, description, price, image, category, stock } = req.body;
 
     if (!name || !description || !price || !category || !stock) {
@@ -58,7 +59,7 @@ router.post('/', upload.single("prod"), auth, async(req, res) => {
             category,
             price,
             stock,
-            image: `./img/productos/${req.file.originalname}`
+            image: `/img/productos/${req.file.originalname}`
         });
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');

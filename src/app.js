@@ -3,10 +3,10 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import { Visitas } from './dao/models/visitasModelo.js';
 import { initPassport } from './config/passportConfig.js';
 import passport from 'passport';
 import cors from 'cors';
+import path from 'path';
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
@@ -24,14 +24,14 @@ let mensajes = [];
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set('views', ('./src/views'));
+app.set('views', path.join('./src/views'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors());
 
-app.use(express.static('./src/public'));
+app.use(express.static(path.join('./src/public')));
 
 initPassport();
 app.use(passport.initialize());

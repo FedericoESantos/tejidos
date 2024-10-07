@@ -62,13 +62,12 @@ router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
 router.get('/productos', passport.authenticate("jwt", {session:false}), passportCall("jwt"), auth(["admin","user"]),async(req, res) => {
     let login = req.user;
     let { error } = req.query;
-    //let carrito = req.user._doc.carrito; 
     let carrito = await cartManager.getBy();
-    console.log(carrito);
 
     let productos;
         try {
         productos = await productManager.getAll();
+        console.log(productos);
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` });

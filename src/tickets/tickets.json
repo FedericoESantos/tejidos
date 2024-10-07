@@ -225,5 +225,24 @@
       ],
       "total": 1500
     }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 12,
+      "fecha": "2024-10-07T23:43:09.500Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "66f2b923e85755712217a8d1",
+          "descripcion": "Boinas abiertas con punto corazon",
+          "precio": 1500,
+          "stockPrevioCompra": 1376,
+          "stockPostCompra": 1375,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
   }
 ]
