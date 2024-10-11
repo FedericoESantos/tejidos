@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     let productos;
     try {
         productos = await productManager.getAll();
-        console.log(productos);
+
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` })
@@ -27,13 +27,13 @@ router.post('/', upload.single("prod"), passportCall("jwt"), auth(["admin"]), as
 
     if (!name || !description || !price || !category || !stock) {
         res.setHeader('Content-Type', 'application/json');
-        return res.status(400).json({ error: `Complete las propiedades faltantes` });
+        return res.redirect("/stock?error=Complete las propiedades faltantes")
     }
 
     if (req.file) {
         image = req.file;
     }
-
+    
     let existe;
     try {
         existe = await productManager.getBy({ name });
@@ -59,8 +59,9 @@ router.post('/', upload.single("prod"), passportCall("jwt"), auth(["admin"]), as
             category,
             price,
             stock,
-            image: `/img/productos/${req.file.originalname}`
+            image: `./img/prod-subidos/${req.file.filename}`
         });
+        console.log(nuevoProducto);
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` })

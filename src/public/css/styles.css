@@ -510,7 +510,10 @@ li {
     max-width: 100%;
     background-color: rgb(106, 79, 131);
 }
-
+.carrito-volver{
+    display: flex;
+    gap: 50px;
+}
 .carrito-volver .links-carr{
     display: flex;
     flex-direction: column;
@@ -519,6 +522,7 @@ li {
     font-family: 'Segoe UI';
     font-weight: bold;
     color: rgb(31, 31, 95);
+    margin: 20px;
 }
 .carrito-volver .links-carr img{
     height: 50px;
@@ -532,4 +536,54 @@ li {
 }
 .imagen-p{
     max-width: 850px; ; 
+}
+
+.limpiar{
+    text-decoration: none;
+    font-family: 'Gill Sans';
+    font-weight: bold;
+    color: rgb(18, 18, 89);
+}
+.limpiar:hover{
+    color: rgb(82, 119, 205);
+}
+.pagar{
+    text-decoration: none;
+    font-family: 'Gill Sans';
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+}
+.pagar:hover{
+    color: rgb(89, 18, 18);
+}
+.regresar strong{
+    color: rgb(18, 18, 89);
+}
+.regresar a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.regresar a img{
+    width: 50px;
+}
+.regresar a img:hover{
+    width: 60px;
+}
+
+.aclaracion-finCompra{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    background: rgb(20, 20, 71);
+    padding: 30px;
+    border-radius: 5%;
+    border-style: groove;
+}
+.aclaracion-finCompra span{
+    font-size: 18px;
+    font-weight: bold;
+    color: aliceblue;
 }

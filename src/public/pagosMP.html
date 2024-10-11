@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Feliz</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Pagos</h1>
+
+        <img src="/img/logo-punto-feliz.png" alt="logo">
+
+        <div class="buscador">
+            <label for="buscador"><strong>Buscador </strong></label>
+            <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="main-pag">
+
+        <div class="card">
+            <div class="info-registro">
+                <span>
+                    Para finalizar la compra solo resta pagar el total de la misma. <br>
+                    Escribe el monto total del importe a pagar y dale "Click" <br>
+                    en "Confirmar Compra."
+                </span>
+            </div>
+
+            <br>
+
+            <h2>Circuito de pago</h2>
+            <br>
+
+            <label for="importe"><strong>Importe a Pagar</strong></label>
+            <br>
+            <input type="number" step="0.10" name="importe" id="importe" value="10"></input>
+            <br>
+            <a href="pagosMP.html" class="limpiar">Limpiar Form</a>
+            <br>
+
+            <a href="#" onclick="cargarMedios()" class="pagar">Confirmar Compra</a>
+            <br><br>
+
+            <div id="tarjetasDePago" style="border: 1px solid rgba(0, 0, 255, 0.275)">
+            </div>
+
+            <div class="regresar">
+                <a href="/perfil">
+                    <img src="/img/iconos/perfil.png" alt="carrito">
+                </a>
+                <strong>Regresar al Perfil</strong>
+            </div>
+            <br>
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="footer">
+
+    </div>
+
+    <script src="http://sdk.mercadopago.com/js/v2/"></script>
+    <script src="/js/pagosMP.js"></script>
+
+</body>
+
+</html>
+

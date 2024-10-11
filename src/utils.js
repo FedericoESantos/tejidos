@@ -3,9 +3,15 @@ import bcrypt from "bcrypt";
 import passport from "passport";
 import nodemailer from "nodemailer";
 
+import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./src/public/img/prod-subidos");
+        cb(null, ("./src/public/img/prod-subidos")); 
     },
 
     filename: function (req, file, cb) {

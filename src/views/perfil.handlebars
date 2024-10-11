@@ -17,9 +17,14 @@
     </div>
 
     <div class="card">
+        <br>
         {{#if error}}
         <div style="font-weight:bolder; font-size:18px; color:red">{{error}}</div> <br>
         {{/if}}
+
+        {{#if ok}}
+            <div style="font-weight:bolder; font-size:18px; color:rgb(55, 131, 14)">{{ok}}</div> <br>
+            {{/if}}
         
         <h2>Mis Datos:</h2>
         <br>

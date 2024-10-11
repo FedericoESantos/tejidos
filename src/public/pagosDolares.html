@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Feliz</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Pagos</h1>
+
+        <img src="/img/logo-punto-feliz.png" alt="logo">
+
+        <div class="buscador">
+            <label for="buscador"><strong>Buscador </strong></label>
+            <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+        </div>
+    </div>
+    <hr>
+
+    <div class="main-pag">
+
+        <div class="card">
+            <div class="info-registro">
+                <span>
+                    Medios de pagos por aquí!!!
+                </span>
+            </div>
+
+            <br>
+
+            <h3>Circuito de pago</h3>
+            <br>
+
+            <a href="pagos.html">Limpiar Form</a>
+
+            <label for="importe">Importe a Pagar</label>
+            <input type="number" step="0.10" name="importe" id="importe" value="10"></input>
+
+            <a href="#" onclick="cargarMedios()">Confirmar Compra</a>
+            <br><br>
+
+            <div id="tarjetasDePago" style="border: 1px solid blue">
+                <br>
+            </div>
+
+            <br>
+            <a href="#" onclick="pagar()">Pagar</a>
+            <br><br>
+
+            <div id="resultado" style="border: 1px solid green">
+                <br>
+            </div>
+            <br><br>
+
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="footer">
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script src="http://js.stripe.com/v3/"></script>
+<script src="/js/pagos.js"></script>

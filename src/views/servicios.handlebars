@@ -1,0 +1,44 @@
+<div class="header"></div>
+    <h1>Nuestros Servicios</h1>
+
+    <img src="./img/logo-punto-feliz.png" alt="logo">
+
+    <div class="buscador">
+        <label for="buscador"><strong>Buscador </strong></label>
+        <input type="text" name="buscaodr" id="buscador" placeholder="¿Que deseas buscar?">
+    </div>
+</div>
+
+<hr>
+
+<div class="main-pag">
+
+    <div class="menu2">
+        {{>menu}}
+    </div>
+
+    <div class="card">
+
+        <input type="text" name="web" value="web" hidden>
+
+        {{#if error}}
+        <div style="font-weight:bolder; font-size:18px; color:red">{{error}}</div> <br>
+        {{/if}}
+
+    </div>
+</div>
+
+</div>
+
+<hr>
+<div class="footer">
+
+
+
+
+
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/productos.js"></script>

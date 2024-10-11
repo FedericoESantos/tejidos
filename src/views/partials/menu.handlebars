@@ -1,5 +1,16 @@
 <ul>
-
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <p class="link">||</p>
+    <li>
+        <a href="/empresa">Empresa</a>
+    </li>
+    <p class="link">||</p>
+    <li>
+        <a href="/servicios">Servicios</a>
+    </li>
+    <p class="link">||</p>
     {{#if login}}
     <li>
         <a href="/perfil">Perfil</a>
@@ -21,15 +32,7 @@
         <a href="/api/session/logout">Loguout</a>
     </li>
     <p class="link">||</p>
-    <li>
-        <a href="/contacto">Contacto</a>
-    </li>
     {{else}}
-
-    <li>
-        <a href="/">Home</a>
-    </li>
-    <p class="link">||</p>
     <li>
         <a href="/registro">Registrate</a>
     </li>
@@ -47,5 +50,8 @@
     <li>
         <a href="/stock">Stock</a>
     </li>
-
+    <p class="link">||</p>
+    <li>
+        <a href="/contacto">Contacto</a>
+    </li>
 </ul>

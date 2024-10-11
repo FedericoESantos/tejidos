@@ -41,6 +41,7 @@ router.get('/', async(req, res) => {
 router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
     let login = req.user;
     let carrito = await cartManager.getBy();
+    let { error } = req.query;
 
     let productos;
     try {
@@ -53,6 +54,7 @@ router.get('/stock', passportCall("jwt"), auth(["admin"]), async(req, res) => {
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("stock", {
         login,
+        error,
         carrito,
         usuario: req.user,
         productos,
@@ -179,20 +181,21 @@ router.get('/login', async(req, res) => {
 
 router.get('/perfil', passportCall("jwt", {session:false}), auth(["user","admin"]), async(req, res) => {
     let login = req.user;
-    let { error } = req.query;
+    let { error, ok } = req.query;
     let usuario = req.user._doc;
     let carrito = await cartManager.getBy();
 
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).render("perfil", {
         error,
+        ok,
         carrito,
         usuario,
         login,
         title: "Punto Feliz" });
 });
 
-router.get("/contacto", passportCall("jwt", {session:false}), auth(["user","admin"]), async(req,res)=>{
+router.get("/contacto", async(req,res)=>{
     let { mensaje, error } = req.query;
     let login = req.user;
     let carrito = await cartManager.getBy();
@@ -207,3 +210,16 @@ router.get("/contacto", passportCall("jwt", {session:false}), auth(["user","admi
         title:"Punto Feliz"});
 })
 
+router.get("/empresa", async(req,res)=>{
+
+    res.setHeader(`Content-Type`,`text/html`);
+    return res.status(200).render("empresa",{
+        title:"Punto Feliz"});
+})
+
+router.get("/servicios", async(req,res)=>{
+
+    res.setHeader(`Content-Type`,`text/html`);
+    return res.status(200).render("servicios",{
+        title:"Punto Feliz"});
+})

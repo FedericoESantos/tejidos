@@ -17,6 +17,8 @@
             <span>
                 Este es tu ticket de compra con el detalle de la operación. <br>
                 Por favor GUARDA EL NUMERO DE COMPROBANTE para poder cambiarlo por la/s compra/s realizada/s. <br>
+                A continuación dale click al boton pagar para abonar la compra,<br>
+                y escribe el total de la compra realizada.<br>
                 En breve nos comunicaremos contigo para concretar la compra. <br>
                 Muchas Gracias!!!
             </span>
@@ -63,6 +65,17 @@
 
         </div>
 
+    <div class="aclaracion-finCompra">
+        <span>
+            Al hacer click en pagar la compra, <br>
+            se toma por asentado que la compra se ha realizado con éxito, <br> 
+            motivo por el cual al <i>"Volver al Carrito"</i> el mismo quedara en cero.
+            <br><br>
+            Para finalizar la compra solo haz un click en <i>"Pagar"</i> <br>
+            para continuar con la operación.
+        </span>
+    </div>
+
         <div class="carrito-volver">
             <a href="/carrito/{{carrito._id}}" class="links-carr">
                 <img src="/img/iconos/carrito.png" alt="icono-compra">
@@ -70,6 +83,11 @@
             </a>
 
             <br>
+
+            <a href="/pagosMp.html" class="links-carr">
+                <img src="/img/iconos/pagar.png" alt="icono-pagar">
+                Pagar
+            </a>
 
         </div>
 

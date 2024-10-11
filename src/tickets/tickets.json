@@ -244,5 +244,328 @@
       ],
       "total": 1500
     }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 13,
+      "fecha": "2024-10-11T12:32:58.508Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 33,
+          "stockPostCompra": 32,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 14,
+      "fecha": "2024-10-11T12:39:22.518Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 32,
+          "stockPostCompra": 31,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 15,
+      "fecha": "2024-10-11T12:40:33.699Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 31,
+          "stockPostCompra": 30,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 16,
+      "fecha": "2024-10-11T12:41:41.776Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 30,
+          "stockPostCompra": 29,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 17,
+      "fecha": "2024-10-11T12:43:09.979Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 29,
+          "stockPostCompra": 28,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 18,
+      "fecha": "2024-10-11T12:43:35.125Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 28,
+          "stockPostCompra": 27,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 19,
+      "fecha": "2024-10-11T12:44:03.094Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 27,
+          "stockPostCompra": 26,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 20,
+      "fecha": "2024-10-11T13:32:57.739Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 26,
+          "stockPostCompra": 25,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 21,
+      "fecha": "2024-10-11T13:35:13.823Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 25,
+          "stockPostCompra": 24,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 22,
+      "fecha": "2024-10-11T13:40:32.607Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 24,
+          "stockPostCompra": 23,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 23,
+      "fecha": "2024-10-11T13:41:53.741Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 23,
+          "stockPostCompra": 22,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 24,
+      "fecha": "2024-10-11T13:42:40.195Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 22,
+          "stockPostCompra": 21,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 25,
+      "fecha": "2024-10-11T13:43:00.988Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 21,
+          "stockPostCompra": 20,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 26,
+      "fecha": "2024-10-11T13:43:28.378Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 20,
+          "stockPostCompra": 19,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 27,
+      "fecha": "2024-10-11T13:44:58.485Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 19,
+          "stockPostCompra": 18,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 28,
+      "fecha": "2024-10-11T13:46:18.287Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 18,
+          "stockPostCompra": 17,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
+  },
+  {
+    "nroComprobante": {
+      "nroComp": 29,
+      "fecha": "2024-10-11T13:47:48.695Z",
+      "comprador": "boomarts@yahoo.com",
+      "conStock": [
+        {
+          "id": "67053d13f0b864213e443af7",
+          "descripcion": "tomyt",
+          "precio": 1500,
+          "stockPrevioCompra": 17,
+          "stockPostCompra": 16,
+          "cantidad": 1,
+          "subtotal": 1500
+        }
+      ],
+      "total": 1500
+    }
   }
 ]
