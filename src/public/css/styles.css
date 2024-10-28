@@ -150,11 +150,13 @@ li {
 .footer p{
     font-size: 18px;
     color: rgb(234, 218, 177);
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 .footer p a{
     text-decoration: none;
     font-size: 18px;
     color: rgb(172, 149, 92);
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 
 @media (max-width: 690px) {
@@ -765,8 +767,12 @@ width: 200px;
     gap: 20px;
 }
 .card .nuestros-servicios .productos .card-product{
+    display: flex;
+    flex-wrap: wrap;
     border-style: groove;
     width: 150px;
+    text-align: center;
+    justify-content: center;
     align-items: center;
     background-color: rgba(240, 255, 255, 0.79);
     box-shadow: 2px 2px 4px black;
