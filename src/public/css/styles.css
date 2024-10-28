@@ -150,13 +150,11 @@ li {
 .footer p{
     font-size: 18px;
     color: rgb(234, 218, 177);
-    text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 .footer p a{
     text-decoration: none;
     font-size: 18px;
     color: rgb(172, 149, 92);
-    text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 
 @media (max-width: 690px) {
@@ -169,6 +167,14 @@ li {
     .menu {
         padding: 10px;
         height: max-content;
+    }
+    .footer p{
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+    }
+    .footer p a{
+        font-weight: bold;
+        color: rgb(14, 17, 42);
     }
 }
 
@@ -319,7 +325,10 @@ li {
     padding: 10px;
     margin-bottom: 15px;
 }
-
+.card form .registro,
+.login strong, input{
+    margin-top: 10px;
+}
 .card form .registro:hover {
     background-color: goldenrod;
     color: red;
