@@ -38,7 +38,7 @@ Swal.fire({
         divMensajes.scrollTop = divMensajes.scrollHeight;
     })
 
-    inputMensaje.addEventListener("keyup", evento =>{
+    inputMensaje.addEventListener("keydown", evento =>{
         evento.preventDefault();
         if(evento.code === "Enter" && evento.target.value.trim().length > 0){
             socket.emit("mensaje", nombre, evento.target.value.trim()); 
