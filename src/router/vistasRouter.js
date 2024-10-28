@@ -21,7 +21,15 @@ router.get('/', async(req, res) => {
 
     let visitas = await Visitas.findOne();
 
-    if (!visitas.ipAddresses.includes(ip)) {
+    if (!visitas) {
+        // Si no existe, crea un nuevo documento de visitas
+        visitas = new Visitas({
+            contador: 1,
+            ipAddresses: [ip]
+        });
+        await visitas.save();
+    } else if (!visitas.ipAddresses.includes(ip)) {
+        // Si el IP no está registrado, incrementa el contador y guarda el IP
         visitas.contador++;
         visitas.ipAddresses.push(ip);
         await visitas.save();
@@ -69,7 +77,6 @@ router.get('/productos', passport.authenticate("jwt", {session:false}), passport
     let productos;
         try {
         productos = await productManager.getAll();
-        console.log(productos);
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');
         return res.status(400).json({ error: `${error.message}` });

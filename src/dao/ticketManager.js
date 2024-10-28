@@ -1,6 +1,5 @@
-import fs from 'fs/promises'; // Usa la versión de fs con promesas
+import fs from 'fs/promises'; 
 import path from 'path';
-import { enviarMail } from '../utils.js';
 
 export class ticketManagerFS {
     constructor() {
@@ -30,7 +29,6 @@ export class ticketManagerFS {
         }
     }
     
-
     async escribirTickets(tickets) {
         if (!tickets || tickets.length === 0) {
             throw new Error('No hay tickets para escribir');
@@ -71,4 +69,5 @@ export class ticketManagerFS {
        
         return nuevoTicket;
     }
+
 }

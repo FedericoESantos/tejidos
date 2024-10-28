@@ -1,13 +1,13 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import mongoose, { STATES } from 'mongoose';
+import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { initPassport } from './config/passportConfig.js';
 import passport from 'passport';
 import cors from 'cors';
 import stripe from 'stripe'; // libreria para cobros en dolares
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig } from "mercadopago";
 
 import { router as vistasRouter } from './router/vistasRouter.js';
 import { router as productRouter } from './router/productRouter.js';
@@ -22,7 +22,7 @@ const app = express();
 //pasarela de pago con cobro en dolares
 //const stripeInstance = stripe("sk_test_51Q80KVFNLAgPyad8SPH0ftdQjBepCZ1hc3CJo6HFrEEpQQlyvObPsqPBmDx5tTZrAGpsjmLhSxNP3OY83QsuStRD00MFTWmMWt");
 
-const client = new MercadoPagoConfig({
+export const client = new MercadoPagoConfig({
     accessToken: "APP_USR-5938451581096435-100920-7d216ebd8664920957063960aeb0572a-2029664870",
     locale: "es-AR"
 }) //el token es la clave privada de la cuenta de prueba vendedora
@@ -73,47 +73,47 @@ app.use("/", vistasRouter);
 //     return res.status(200).json({ paymentIntent });
 // })
 
-app.post("/pagar", async (req, res) => {
-    let { importe } = req.body;
+// app.post("/pagar", async (req, res) => {
+//     let { importe } = req.body;
 
-    importe = Number(importe);
-    if (isNaN(importe)) {
-        res.setHeader(`Content-Type`, `application/json`);
-        return res.status(400).json({ error: "Error en el importe" });
-    }
+//     importe = Number(importe);
+//     if (isNaN(importe)) {
+//         res.setHeader(`Content-Type`, `application/json`);
+//         return res.status(400).json({ error: "Error en el importe" });
+//     }
 
-    const preference = new Preference(client);
+//     const preference = new Preference(client);
 
-    try {
-        let resultado = await preference.create({
-            body: {
-                items: [
-                    {
-                        id: "001",
-                        title: "Mi Producto",
-                        quantity: 1,
-                        unit_price: importe
-                    }
-                ],
-                back_urls: {
-                    success: "http://localhost:3000/success",
-                    pending: "http://localhost:3000/pending",
-                    failure: "http://localhost:3000/failure"
-                },
-                auto_return: "approved"
-            }
-        });
+//     try {
+//         let resultado = await preference.create({
+//             body: {
+//                 items: [
+//                     {
+//                         id: "001",
+//                         title: "Mi Producto",
+//                         quantity: 1,
+//                         unit_price: importe
+//                     }
+//                 ],
+//                 back_urls: {
+//                     success: "http://localhost:3000/success",
+//                     pending: "http://localhost:3000/pending",
+//                     failure: "http://localhost:3000/failure"
+//                 },
+//                 auto_return: "approved"
+//             }
+//         });
 
-        res.setHeader(`Content-Type`, `application/json`);
-        return res.status(200).json({
-            id: resultado.id
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al crear la preferencia de pago' });  // Devuelve JSON en caso de error
-    }
+//         res.setHeader(`Content-Type`, `application/json`);
+//         return res.status(200).json({
+//             id: resultado.id
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error al crear la preferencia de pago' });  // Devuelve JSON en caso de error
+//     }
 
-});
+// });
 
 /// Respuestas de MP
 app.get('/success', (req, res) => {

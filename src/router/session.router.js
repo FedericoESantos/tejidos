@@ -11,13 +11,7 @@ const carritoManager = new CarritoManager();
 export const router = Router();
 
 router.get("/error", (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    return res.status(500).json(
-        {
-            error: `Error inesperado en el servidor - Intente más tarde`,
-            detalle: `Fallo al autenticar...!!!`
-        }
-    )
+    return res.redirect("/login?error=No existen usuarios registrados")
 })
 
 router.post('/registro', passport.authenticate("registro", {  session: false, failureRedirect: ("/api/session/error") }), async (req, res) => {

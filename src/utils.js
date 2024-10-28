@@ -50,8 +50,8 @@ const transporter = nodemailer.createTransport(
         service: "gmail",
         port:"587",
         auth: {
-            user:"boomarts47@gmail.com",
-            pass:"dicfdqdunpplfacl"
+            user:"boomartsfs@gmail.com",
+            pass:"hool iklh zauh jebk"
         }
     }
 )
@@ -59,7 +59,7 @@ const transporter = nodemailer.createTransport(
 export const enviarMail = async(to, subject, message, attachments) => {
         return await transporter.sendMail(
                 {
-                    from:"Tejidos Punto Feliz | boomarts47@gmail.com",
+                    from:"Boom Arts FS | boomartsfs@gmail.com",
                     to,
                     subject,
                     html:message,

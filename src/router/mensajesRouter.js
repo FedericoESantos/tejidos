@@ -6,7 +6,7 @@ export const router = Router();
 
 router.post('/', upload.array("contacto"), async (req, res) => {
     let { subject, message } = req.body;
-    let to = 'boomarts@yahoo.com';
+    let to = 'boomartsfs@gmail.com';
     if (!subject || !message) {
         res.setHeader(`Content-Type`, `application/json`);
         return res.status(200).json({ error: "Complete los datos" });

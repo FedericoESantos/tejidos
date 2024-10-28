@@ -4,13 +4,23 @@ import { CarritoManagerMongo as carrito } from '../dao/carritoManagerMongo.js';
 import { productManagerMongo as prod } from '../dao/productManagerMongo.js';
 import { auth } from '../middleware/auth.js';
 import { ticketManagerFS as TicketManager } from '../dao/ticketManager.js';
-import {  passportCall } from '../utils.js';
+import { passportCall } from '../utils.js';
+import { client } from '../app.js';
+
+import pkg from 'mercadopago';
+const { Preference } = pkg;
 
 export const router = Router();
 
 const carritoManager = new carrito();
 const productManager = new prod();
 const ticketManager = new TicketManager();
+
+let conStock = [];
+let sinStock = [];
+let total = 0;
+let subtotal = 0;
+let ticket= {};
 
 router.get("/:cid", async (req, res) => {
     let { cid } = req.params;
@@ -32,7 +42,6 @@ router.get("/:cid", async (req, res) => {
 
 router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async (req, res) => {
     let { cid } = req.params;
-
     if (!isValidObjectId(cid)) {
         return res.status(400).json({ error: "Ingrese cid valido" });
     }
@@ -46,10 +55,10 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
         return res.redirect(`/carrito/${cid}?error=El carrito no tiene items ... Todavía!!! :D`);
     }
 
-    let conStock = [];
-    let sinStock = [];
-    let total = 0;
-    let subtotal = 0;
+    // let conStock = [];
+    // let sinStock = [];
+    // let total = 0;
+    // let subtotal = 0;
 
     for (let i = 0; i < carrito.productos.length; i++) {
         let id = carrito.productos[i].producto;
@@ -78,28 +87,30 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
 
     let productosFinales = carrito.productos.filter(prod => {
         let producto = productManager.getBy({ _id: prod.producto });
-        return producto && producto.stock >= prod.cantidad; 
+        return producto && producto.stock >= prod.cantidad;
     });
-    
-    carrito.productos = productosFinales; 
+
+    carrito.productos = productosFinales;
     await carritoManager.update(cid, carrito);
 
     if (conStock.length === 0) {
-         return res.redirect(`/carrito/${cid}?error=No existen items en condiciones de ser comprados`);
+        return res.redirect(`/carrito/${cid}?error=No existen items en condiciones de ser comprados`);
     }
 
     let nroComp = await ticketManager.obtenerNroComprobante();
     let fecha = new Date();
     let comprador = req.user?._doc.email;
 
-    let ticket = await ticketManager.crearTicketLocal({
+    ticket = await ticketManager.crearTicketLocal({
         nroComp,
         fecha,
         comprador,
         conStock,
         total
     });
- 
+
+    // console.log(conStock);
+
     // let message = `
     //         Hola ${req.user?._doc.name || ""} <br>
     //         Ha registrado una compra con n° de ticket ${nroComp}, por un importe de $${total} <br>
@@ -116,15 +127,63 @@ router.get("/:cid/comprar", passportCall("jwt"), auth(["admin", "user"]), async 
 
     //await enviarMail(comprador, "Tu compra está a un paso de concretarse", message);
 
+    total = ticket.nroComprobante.total;
+    
+    //console.log("el total es",total);
+
     res.setHeader('Content-Type', 'text/html');
-    return res.status(200).render("tickets", { 
+    return res.status(200).render("tickets", {
         title: "Punto Feliz",
         carrito,
         ticket,
+        total
     });
 
 });
 
+router.post("/pagar", async (req, res) => {
+    let { importe } = req.body;
+
+    //console.log("El total del ticket es:", total);
+    
+    importe = Number(importe);
+    if (isNaN(importe)) {
+        res.setHeader(`Content-Type`, `application/json`);
+        return res.status(400).json({ error: "Error en el importe" });
+    }
+
+    const preference = new Preference(client);
+
+    try {
+        let resultado = await preference.create({
+            body: {
+                items: [
+                    {
+                        id: "001",
+                        title: "Mi Producto",
+                        quantity: 1,
+                        unit_price: importe
+                    }
+                ],
+                back_urls: {
+                    success: "http://localhost:3000/success",
+                    pending: "http://localhost:3000/pending",
+                    failure: "http://localhost:3000/failure"
+                },
+                auto_return: "approved"
+            }
+        });
+
+        res.setHeader(`Content-Type`, `application/json`);
+        return res.status(200).json({
+            id: resultado.id
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al crear la preferencia de pago' });  // Devuelve JSON en caso de error
+    }
+
+});
 
 router.post('/:cid/product/:pid', passportCall("jwt"), auth(["admin", "user"]), async (req, res, next) => {
     try {

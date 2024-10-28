@@ -9,8 +9,7 @@ const cargarMedios = async () => {
         return;
     }
 
-
-    const respuesta = await fetch("/pagar", {
+    const respuesta = await fetch("/api/carts/pagar", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
